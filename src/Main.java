@@ -17,7 +17,7 @@ public class Main {
         String[] extras = {"Cheese", "Oregano", "Ham", "Pineapple", "Pepperoni", "Bolognese", "Spaghetti", "Sausage", "Prawns", "Bell Pepper", "Onions", "Olives"};
 
         //Menu is created with all the pizzas and all the extras that are available
-        Menu menu = new Menu(new Pizza[]{vesuvio, hawaii, pepperoni, carbona, leBlissola, silvia}, "Mainmenu", extras, 8);
+        Menu menu = new Menu(new Pizza[]{margarita, vesuvio, hawaii, pepperoni, carbona, leBlissola, silvia}, "Mainmenu", extras, 8);
 
 
         Order oneOneTwo = new Order(new Pizza[]{margarita, margarita},"Lasse","112", "7:30");
