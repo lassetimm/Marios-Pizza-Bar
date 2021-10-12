@@ -1,4 +1,8 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 public class Main {
+    private static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         //All pizzas
         Pizza margarita = new Pizza ("Margarita", 57, 1,new String[]{"Tomatoes", "Cheese", "Oregano"});
@@ -20,6 +24,58 @@ public class Main {
 
         menu.seeMenu();
 
+        boolean day = true;
+        while (day){
+            System.out.println();
+            int choice = getChoice();
+            switch (choice){
+                case 1:
+                    //Make order
+                    System.out.println("You are in \"Make order\"");
+                    break;
+                case 2:
+                    //Delete order
+                    System.out.println("You are in \"Delete order\"");
+                    break;
+                case 3:
+                    //Move order from "notServed" to "Served".
+                    System.out.println("You are in \"Move order\"");
+                    break;
+                case 4:
+                    //End day
+                    System.out.println("You are in \"End day\"");
+                    day = false;
+                    break;
+            }
+        }
+    }
+
+    private static void callOptions(){
+        System.out.println("What do you want to do?");
+        System.out.println("Press 1 for: Make new order.");
+        System.out.println("Press 2 for: Delete order");
+        System.out.println("Press 3 for: Move order from \"notServed\" to \"Served\" list");
+        System.out.println("Press 4 for: End day");
+    }
+
+    private static int getChoice(){
+        int choice = 0;
+        while (true) {
+            callOptions();
+            try {
+                choice = scanner.nextInt();
+                if (choice > 0 && choice < 5) {
+                    System.out.println("You chose: " + choice);
+                    break;
+                } else {
+                    throw new InputMismatchException();
+                }
+            } catch (InputMismatchException inputWrong) {
+                scanner.nextLine();
+                System.out.println("Please only choose a number from 1 - 4 ");
+            }
+        }
+        return choice;
     }
 
 }
