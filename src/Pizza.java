@@ -59,7 +59,7 @@ public class Pizza {
 
 
     public String toString() {
-        return "Order{" +
+        return "Pizza{" +
                 "Name='" + pizzaName + '\'' +
                 ", Price=" + pizzaPrice +
                 ", Number=" + pizzaNumber +
