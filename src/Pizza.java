@@ -59,11 +59,11 @@ public class Pizza {
 
 
     public String toString() {
-        return "Pizza{" +
-                "pizzaName='" + pizzaName + '\'' +
-                ", pizzaPrice=" + pizzaPrice +
-                ", pizzaNumber=" + pizzaNumber +
-                ", ingredients=" + Arrays.toString(ingredients) +
+        return "Order{" +
+                "Name='" + pizzaName + '\'' +
+                ", Price=" + pizzaPrice +
+                ", Number=" + pizzaNumber +
+                ", Ingredients=" + Arrays.toString(ingredients) +
                 '}';
     }
 }
