@@ -24,6 +24,8 @@ public class Main {
 
         menu.seeMenu();
 
+        //While loop som spørger hvad man vil gøre. Der er ikke lavet metoder til hver enkelt ting man kan gøre endnu. Derfor er det udkommenteret.
+        /*
         boolean day = true;
         while (day){
             System.out.println();
@@ -48,6 +50,7 @@ public class Main {
                     break;
             }
         }
+         */
     }
 
     private static void callOptions(){
@@ -57,6 +60,8 @@ public class Main {
         System.out.println("Press 3 for: Move order from \"notServed\" to \"Served\" list");
         System.out.println("Press 4 for: End day");
     }
+
+
 
     private static int getChoice(){
         int choice = 0;
