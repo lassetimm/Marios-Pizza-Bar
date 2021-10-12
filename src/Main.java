@@ -11,7 +11,9 @@ public class Main {
 
         Order oneOneTwo = new Order(new Pizza[]{margarita, margarita},"Lasse","112", "7:30");
 
-        System.out.println(oneOneTwo);
+        String[] extras = {"Cheese", "Oregano", "Ham", "Pineapple", "Pepperoni", "Bolognese", "Spaghetti", "Sausage", "Prawns", "Bell Pepper", "Onions", "Olives"};
+        Menu menu = new Menu(new Pizza[]{vesuvio, hawaii, pepperoni, carbona, leBlissola, silvia}, "Mainmenu", extras, 8);
+        menu.seeMenu();
 
     }
 
