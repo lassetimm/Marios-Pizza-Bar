@@ -19,7 +19,45 @@ public class Pizza {
         return pizzaPrice;
     }
 
+    public String getPizzaName()
+    {
+        return pizzaName;
+    }
+
+    public void setPizzaName(String pizzaName)
+    {
+        this.pizzaName = pizzaName;
+    }
+
+    public void setPizzaPrice(int pizzaPrice)
+    {
+        this.pizzaPrice = pizzaPrice;
+    }
+
+    public int getPizzaNumber()
+    {
+        return pizzaNumber;
+    }
+
+    public void setPizzaNumber(int pizzaNumber)
+    {
+        this.pizzaNumber = pizzaNumber;
+    }
+
+    public String[] getIngredients()
+    {
+        return ingredients;
+    }
+
+    public void setIngredients(String[] ingredients)
+    {
+        this.ingredients = ingredients;
+    }
+
     @Override
+
+
+
     public String toString() {
         return "Pizza{" +
                 "pizzaName='" + pizzaName + '\'' +
