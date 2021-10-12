@@ -19,6 +19,10 @@ public class Pizza {
         return pizzaPrice;
     }
 
+    public String getPizzaName() {
+        return pizzaName;
+    }
+
     @Override
     public String toString() {
         return "Pizza{" +
