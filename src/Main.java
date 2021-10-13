@@ -18,7 +18,7 @@ public class Main {
         String[] extras = {"Cheese", "Oregano", "Ham", "Pineapple", "Pepperoni", "Bolognese", "Spaghetti", "Sausage", "Prawns", "Bell Pepper", "Onions", "Olives"};
 
         //Menu is created with all the pizzas and all the extras that are available
-        Menu menu = new Menu(new Pizza[]{vesuvio, hawaii, pepperoni, carbona, leBlissola, silvia}, "Mainmenu", extras, 8);
+        Menu menu = new Menu(new Pizza[]{margarita, vesuvio, hawaii, pepperoni, carbona, leBlissola, silvia}, "Mainmenu", extras, 8);
 
 
         Order oneOneTwo = new Order(new Pizza[]{margarita, margarita},"Lasse","112", "7:30");
@@ -37,6 +37,8 @@ public class Main {
 
         menu.seeMenu();
 
+        //While loop som spørger hvad man vil gøre. Der er ikke lavet metoder til hver enkelt ting man kan gøre endnu. Derfor er det udkommenteret.
+        /*
         boolean day = true;
         while (day){
             System.out.println();
@@ -61,6 +63,7 @@ public class Main {
                     break;
             }
         }
+         */
     }
 
     private static void callOptions(){
@@ -70,6 +73,8 @@ public class Main {
         System.out.println("Press 3 for: Move order from \"notServed\" to \"Served\" list");
         System.out.println("Press 4 for: End day");
     }
+
+
 
     private static int getChoice(){
         int choice = 0;
