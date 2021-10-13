@@ -1,7 +1,10 @@
-public class Statistics {
-    private Order[] listOfOrders;
+import java.util.ArrayList;
 
-    public Statistics(Order[] listOfOrders) {
-        this.listOfOrders = listOfOrders;
+public class Statistics {
+    private ArrayList<Order> listOfOrders = new ArrayList<>();
+
+
+    public void addToListOfOrders(Order Order) {
+        this.listOfOrders.add(Order);
     }
 }

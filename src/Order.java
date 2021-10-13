@@ -1,13 +1,14 @@
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Order {
+
     private Pizza[] listOfPizzas;
     private int totalPizzaPrice;
     private String customerName;
     private String customerPhoneNumber;
     private String timeOfPickUp;
     private boolean hasBeenPickedUp = false;
+
 
     public Order(Pizza[] listOfPizzas, String customerName, String customerPhoneNumber, String timeOfPickUp) {
         this.listOfPizzas = listOfPizzas;
@@ -19,7 +20,6 @@ public class Order {
             totalPizzaPrice += pizza.getPizzaPrice();
         }
     }
-
 
     @Override
     public String toString() {
