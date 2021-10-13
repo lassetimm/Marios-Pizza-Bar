@@ -1,58 +1,73 @@
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
-    private static Scanner scanner = new Scanner(System.in);
-    public static void main(String[] args) {
-        //All pizzas
-        Pizza margarita = new Pizza ("Margarita", 57, 1,new String[]{"Tomatoes", "Cheese", "Oregano"});
-        Pizza vesuvio = new Pizza ("Vesuvio", 57, 2, new String[]{"Tomatoes", "Cheese", "Ham", "Oregano"});
-        Pizza hawaii = new Pizza ("Hawaii", 60, 3, new String[]{"Tomatoes", "Cheese", "Ham", "Pineapple", "Oregano"});
-        Pizza pepperoni = new Pizza ("Pepperoni", 61, 4, new String[]{"Tomatoes", "Cheese", "Pepperoni", "Oregano"});
-        Pizza carbona = new Pizza ("Carbona", 65, 5, new String[]{"Tomatoes", "Cheese", "Bolognese", "Spaghetti", "Sausage", "Oregano"});
-        Pizza leBlissola = new Pizza ("Le Blissola", 62, 6, new String[]{"Tomatoes", "Cheese", "Ham", "Prawns", "Oregano"});
-        Pizza silvia = new Pizza ("Silvia", 65, 7, new String[]{"Tomatoes", "Cheese", "Pepperoni", "Bell Pepper", "Onions", "Olives", "Oregano"});
 
-        //All Ingredients available
-        String[] extras = {"Cheese", "Oregano", "Ham", "Pineapple", "Pepperoni", "Bolognese", "Spaghetti", "Sausage", "Prawns", "Bell Pepper", "Onions", "Olives"};
+    static ArrayList<Pizza> PizzasToOrder = new ArrayList<>();
+    static Scanner scan = new Scanner(System.in);
+    private static java.lang.Object scan;
 
-        //Menu is created with all the pizzas and all the extras that are available
-        Menu menu = new Menu(new Pizza[]{margarita, vesuvio, hawaii, pepperoni, carbona, leBlissola, silvia}, "Mainmenu", extras, 8);
+    //All pizzas
+    Pizza margarita = new Pizza ("Margarita", 57, 1,new String[]{"Tomatoes", "Cheese", "Oregano"});
+    Pizza vesuvio = new Pizza ("Vesuvio", 57, 2, new String[]{"Tomatoes", "Cheese", "Ham", "Oregano"});
+    Pizza hawaii = new Pizza ("Hawaii", 60, 3, new String[]{"Tomatoes", "Cheese", "Ham", "Pineapple", "Oregano"});
+    Pizza pepperoni = new Pizza ("Pepperoni", 61, 4, new String[]{"Tomatoes", "Cheese", "Pepperoni", "Oregano"});
+    Pizza carbona = new Pizza ("Carbona", 65, 5, new String[]{"Tomatoes", "Cheese", "Bolognese", "Spaghetti", "Sausage", "Oregano"});
+    Pizza leBlissola = new Pizza ("Le Blissola", 62, 6, new String[]{"Tomatoes", "Cheese", "Ham", "Prawns", "Oregano"});
+    Pizza silvia = new Pizza ("Silvia", 65, 7, new String[]{"Tomatoes", "Cheese", "Pepperoni", "Bell Pepper", "Onions", "Olives", "Oregano"});
+
+    //All Ingredients available
+    String[] extras = {"Cheese", "Oregano", "Ham", "Pineapple", "Pepperoni", "Bolognese", "Spaghetti", "Sausage", "Prawns", "Bell Pepper", "Onions", "Olives"};
 
 
-        Order oneOneTwo = new Order(new Pizza[]{margarita, margarita},"Lasse","112", "7:30");
 
-        menu.seeMenu();
+    static void takeNewOrder(){
 
-        //While loop som spørger hvad man vil gøre. Der er ikke lavet metoder til hver enkelt ting man kan gøre endnu. Derfor er det udkommenteret.
-        /*
-        boolean day = true;
-        while (day){
-            System.out.println();
-            int choice = getChoice();
-            switch (choice){
-                case 1:
-                    //Make order
-                    System.out.println("You are in \"Make order\"");
-                    break;
-                case 2:
-                    //Delete order
-                    System.out.println("You are in \"Delete order\"");
-                    break;
-                case 3:
-                    //Move order from "notServed" to "Served".
-                    System.out.println("You are in \"Move order\"");
-                    break;
-                case 4:
-                    //End day
-                    System.out.println("You are in \"End day\"");
-                    day = false;
-                    break;
-                    
-            }
+        Order newOrder;
 
+        System.out.println("Insert the following infomation");
+        System.out.println("    - Customer name:");
+        String customerName = scan.nextLine();
+        System.out.println("    - Customer Phone Number:");
+        String customerPhoneNum = scan.nextLine();
+        System.out.println("    - time of pickup:");
+        String timeOfPickup = scan.nextLine();
+        System.out.println("    - What pizzas:\n" +
+                "Press q when your done");
+
+        while (scan.hasNextInt()){
+
+            System.out.println(primaryMenu.toString());
+            int pizzaNumber = validateUserIntInput(1, primaryMenu.getListOfPizzas().length);
+            PizzasToOrder.add(primaryMenu.getPizzaFromListOfPizzas(pizzaNumber));
+            System.out.println(primaryMenu.getPizzaFromListOfPizzas(pizzaNumber));
         }
-         */
+
+        newOrder = new Order(PizzasToOrder, customerName, customerPhoneNum, timeOfPickup);
+        stats.addToListOfOrders(new Order(PizzasToOrder, customerName, customerPhoneNum, timeOfPickup));
+        System.out.println(newOrder.toString());
+
+    }
+
+    static int validateUserIntInput(int minValue, int maxValue){
+        int returnNum = 0;
+        boolean run = true;
+        while (run) {
+            try {
+                returnNum = scan.nextInt();
+                if (returnNum >= minValue && returnNum <= maxValue){
+                    run = false;
+                }
+                else {
+                    System.out.println("The number has to be between " + (minValue - 1) + " and " + (maxValue + 1));
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input! try a number");
+                scan.next();
+            }
+        }
+        return returnNum;
     }
 
     private static void callOptions(){
@@ -65,24 +80,14 @@ public class Main {
 
 
 
-    private static int getChoice(){
-        int choice = 0;
-        while (true) {
-            callOptions();
-            try {
-                choice = scanner.nextInt();
-                if (choice > 0 && choice < 5) {
-                    System.out.println("You chose: " + choice);
-                    break;
-                } else {
-                    throw new InputMismatchException();
-                }
-            } catch (InputMismatchException inputWrong) {
-                scanner.nextLine();
-                System.out.println("Please only choose a number from 1 - 4 ");
-            }
-        }
-        return choice;
+    public static void main(String[] args) {
+        Pizza margarita = new Pizza ("Margarita", 57, 1,new String[]{"Tomatoes", "Cheese"});
+
+
+        Order oneOneTwo = new Order(new Pizza[]{margarita, margarita},"Lasse","112", "7:30");
+
+        System.out.println(oneOneTwo);
+
     }
 
 }
