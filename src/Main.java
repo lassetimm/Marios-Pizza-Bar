@@ -1,19 +1,21 @@
 import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class Main {
 
-
     static ArrayList<Pizza> PizzasToOrder = new ArrayList<>();
 
-    static Statistics stats = new Statistics();
-    static Pizza margarita = new Pizza ("Margarita", 57, 1, new String[]{"Tomatoes", "Cheese"});
-    static Pizza pepperroni = new Pizza ("Pepperroni", 65, 2, new String[]{"Tomatoes", "Cheese, Pepperroni"});
-    static Pizza hawaii = new Pizza ("Hawaii", 60, 3, new String[]{"Tomatoes", "Cheese, Ham, Pinapple"});
+    //All pizzas
+    Pizza margarita = new Pizza ("Margarita", 57, 1,new String[]{"Tomatoes", "Cheese", "Oregano"});
+    Pizza vesuvio = new Pizza ("Vesuvio", 57, 2, new String[]{"Tomatoes", "Cheese", "Ham", "Oregano"});
+    Pizza hawaii = new Pizza ("Hawaii", 60, 3, new String[]{"Tomatoes", "Cheese", "Ham", "Pineapple", "Oregano"});
+    Pizza pepperoni = new Pizza ("Pepperoni", 61, 4, new String[]{"Tomatoes", "Cheese", "Pepperoni", "Oregano"});
+    Pizza carbona = new Pizza ("Carbona", 65, 5, new String[]{"Tomatoes", "Cheese", "Bolognese", "Spaghetti", "Sausage", "Oregano"});
+    Pizza leBlissola = new Pizza ("Le Blissola", 62, 6, new String[]{"Tomatoes", "Cheese", "Ham", "Prawns", "Oregano"});
+    Pizza silvia = new Pizza ("Silvia", 65, 7, new String[]{"Tomatoes", "Cheese", "Pepperoni", "Bell Pepper", "Onions", "Olives", "Oregano"});
 
-    static Scanner scan = new Scanner(System.in);
-    static Menu primaryMenu = new Menu(new Pizza[]{margarita, pepperroni, hawaii}, "MainMenu", Pizza.getIngredients(),10);
+    //All Ingredients available
+    String[] extras = {"Cheese", "Oregano", "Ham", "Pineapple", "Pepperoni", "Bolognese", "Spaghetti", "Sausage", "Prawns", "Bell Pepper", "Onions", "Olives"};
 
 
 
@@ -65,11 +67,19 @@ public class Main {
         return returnNum;
     }
 
+    private static void callOptions(){
+        System.out.println("What do you want to do?");
+        System.out.println("Press 1 for: Make new order.");
+        System.out.println("Press 2 for: Delete order");
+        System.out.println("Press 3 for: Move order from \"notServed\" to \"Served\" list");
+        System.out.println("Press 4 for: End day");
+    }
+
+
 
     public static void main(String[] args) {
+        Pizza margarita = new Pizza ("Margarita", 57, 1,new String[]{"Tomatoes", "Cheese"});
 
-
-        Pizza margarita = new Pizza ("Margarita", 57, 1, new String[]{"Tomatoes", "Cheese"});
 
         Order oneOneTwo = new Order(new Pizza[]{margarita, margarita},"Lasse","112", "7:30");
 
