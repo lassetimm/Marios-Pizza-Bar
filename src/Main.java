@@ -19,7 +19,7 @@ public class Main {
     static Pizza leBlissola = new Pizza ("Le Blissola", 62, 6, new String[]{"Tomatoes", "Cheese", "Ham", "Prawns", "Oregano"});
     static Pizza silvia = new Pizza ("Silvia", 65, 7, new String[]{"Tomatoes", "Cheese", "Pepperoni", "Bell Pepper", "Onions", "Olives", "Oregano"});
 
-    static Menu primaryMenu = new Menu(new Pizza[]{margarita, vesuvio, hawaii, pepperoni, carbona, leBlissola, silvia}, "MainMenu", Pizza.extras,10);
+    static Menu primaryMenu = new Menu(new Pizza[]{margarita, vesuvio, hawaii, pepperoni, carbona, leBlissola, silvia}, "MainMenu", Pizza.extras, 10);
 
     static Statistics stats = new Statistics();
 
@@ -81,16 +81,69 @@ public class Main {
     private static void callOptions(){
         System.out.println("What do you want to do?");
         System.out.println("Press 1 for: Make new order.");
-        System.out.println("Press 2 for: Delete order");
-        System.out.println("Press 3 for: Move order from \"notServed\" to \"Served\" list");
-        System.out.println("Press 4 for: End day");
+        System.out.println("Press 2 for: Change existing order.");
+        System.out.println("Press 3 for: Delete order.");
+        System.out.println("Press 4 for: Move order from \"notServed\" to \"Served\" list.");
+        System.out.println("Press 5 for: Show menu");
+        System.out.println("Press 6 for: Show today's current stats.");
+        System.out.println("Press 7 for: End day.");
+    }
+
+    public static boolean getChoice(){
+        callOptions();
+        int choice = validateUserIntInput(1, 7);
+        doChoice(choice);
+        if (choice == 7){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    static void doChoice(int choice){
+        switch (choice){
+            case 1:
+                takeNewOrder();
+                break;
+            case 2:
+                //Change existing order
+                System.out.println("You are in: 2");
+                break;
+            case 3:
+                //Delete order
+                System.out.println("You are in: 3");
+                break;
+            case 4:
+                //Move order from "notServed" to "served"
+                System.out.println("You are in: 4");
+                break;
+            case 5:
+                //See menu
+                primaryMenu.seeMenu();
+                break;
+            case 6:
+                //Show today's current stats
+                System.out.println("You are in: 6");
+                break;
+            case 7:
+                //End day
+                System.out.println("You are in: 7");
+                break;
+        }
+
     }
 
 
 
-    public static void main(String[] args) {
 
-        takeNewOrder();
+
+    public static void main(String[] args) {
+        boolean choice = true;
+        while (choice){
+            choice = getChoice();
+        }
+
 
     }
 
