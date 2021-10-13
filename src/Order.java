@@ -31,6 +31,7 @@ public class Order {
 
     @Override
     public String toString() {
+
         return "Order{" +
                 "listOfPizzas=" + listOfPizzas +
                 ", totalPizzaPrice=" + totalPizzaPrice +
@@ -39,5 +40,15 @@ public class Order {
                 ", timeOfPickUp='" + timeOfPickUp + '\'' +
                 ", hasBeenPickedUp=" + hasBeenPickedUp +
                 '}';
+    }
+
+    public String getCustomerPhoneNumber()
+    {
+        return customerPhoneNumber;
+    }
+
+    public void setCustomerPhoneNumber(String customerPhoneNumber)
+    {
+        this.customerPhoneNumber = customerPhoneNumber;
     }
 }
