@@ -1,9 +1,12 @@
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class Main {
 
     static ArrayList<Pizza> PizzasToOrder = new ArrayList<>();
+    static Scanner scan = new Scanner(System.in);
+    private static java.lang.Object scan;
 
     //All pizzas
     Pizza margarita = new Pizza ("Margarita", 57, 1,new String[]{"Tomatoes", "Cheese", "Oregano"});
