@@ -20,6 +20,14 @@ public class Order {
         }
     }
 
+    public int getTotalPizzaPrice() {
+        return totalPizzaPrice;
+    }
+
+    public Pizza[] getListOfPizzas() {
+        return listOfPizzas;
+    }
+
 
     @Override
     public String toString() {

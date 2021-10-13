@@ -1,5 +1,5 @@
+import java.util.ArrayList;
 import java.util.Arrays;
-
 public class Pizza {
     private String pizzaName;
     private int pizzaPrice;
@@ -54,13 +54,14 @@ public class Pizza {
         this.ingredients = ingredients;
     }
 
+
     @Override
     public String toString() {
         return "Pizza{" +
-                "pizzaName='" + pizzaName + '\'' +
-                ", pizzaPrice=" + pizzaPrice +
-                ", pizzaNumber=" + pizzaNumber +
-                ", ingredients=" + Arrays.toString(ingredients) +
+                "Name='" + pizzaName + '\'' +
+                ", Price=" + pizzaPrice +
+                ", Number=" + pizzaNumber +
+                ", Ingredients=" + Arrays.toString(ingredients) +
                 '}';
     }
 }
