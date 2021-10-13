@@ -46,7 +46,9 @@ public class Main {
                     System.out.println("You are in \"End day\"");
                     day = false;
                     break;
+                    
             }
+
         }
     }
 
