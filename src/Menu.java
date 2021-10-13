@@ -16,6 +16,10 @@ public class Menu {
         return listOfPizza;
     }
 
+    public Pizza getPizzaFromListOfPizza(int indexNumber){
+        return listOfPizza[indexNumber];
+    }
+
     //Metode til at printe hele menuen så den står ligesom i beskrivelsen på Marios Pizzabar.
     public void seeMenu(){
         //For hver pizza printes der en linje.
