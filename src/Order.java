@@ -2,14 +2,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Order {
-    private Pizza[] listOfPizzas;
+    private ArrayList<Pizza> listOfPizzas = new ArrayList<>();
     private int totalPizzaPrice;
     private String customerName;
     private String customerPhoneNumber;
     private String timeOfPickUp;
     private boolean hasBeenPickedUp = false;
 
-    public Order(Pizza[] listOfPizzas, String customerName, String customerPhoneNumber, String timeOfPickUp) {
+    public Order(ArrayList<Pizza> listOfPizzas, String customerName, String customerPhoneNumber, String timeOfPickUp) {
         this.listOfPizzas = listOfPizzas;
         this.customerName = customerName;
         this.customerPhoneNumber = customerPhoneNumber;
@@ -24,7 +24,7 @@ public class Order {
         return totalPizzaPrice;
     }
 
-    public Pizza[] getListOfPizzas() {
+    public ArrayList<Pizza> getListOfPizzas() {
         return listOfPizzas;
     }
 
@@ -33,7 +33,7 @@ public class Order {
     public String toString() {
 
         return "Order{" +
-                "listOfPizzas=" + Arrays.toString(listOfPizzas) +
+                "listOfPizzas=" + listOfPizzas +
                 ", totalPizzaPrice=" + totalPizzaPrice +
                 ", customerName='" + customerName + '\'' +
                 ", customerPhoneNumber='" + customerPhoneNumber + '\'' +

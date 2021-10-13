@@ -1,28 +1,33 @@
-public class Statistics {
-    private Order[] listOfOrders;
+import java.util.ArrayList;
+import java.util.Collections;
 
+public class Statistics {
+
+    private ArrayList<Order> listOfOrders = new ArrayList<>();
+    private ArrayList<Integer> pizzas = new ArrayList<Integer>();
+
+    private int margarino = 0;
+    private int vesuvio = 0;
+    private int hawaii = 0;
+    private int pepperoni = 0;
+    private int carbona = 0;
+    private int leBlissola = 0;
+    private int silvia = 0;
 
     public void addToListOfOrders(Order Order) {
         this.listOfOrders.add(Order);
     }
 
-    public Order[] getListOfOrders() {
+    public ArrayList<Order> getListOfOrders() {
         return listOfOrders;
     }
 
-    ArrayList<Integer> pizzas = new ArrayList<Integer>();
 
     public void numberOfPizzas(){
-        int margarino = 0;
-        int vesuvio = 0;
-        int hawaii = 0;
-        int pepperoni = 0;
-        int carbona = 0;
-        int leBlissola = 0;
-        int silvia = 0;
-        for (int i = 0; i < listOfOrders.length; i++) {
-            for (int j = 0; j < listOfOrders[i].getListOfPizzas().length; j++) {
-                Pizza pizza = listOfOrders[i].getListOfPizzas()[j];
+
+        for (int i = 0; i < listOfOrders.size(); i++) {
+            for (int j = 0; j < listOfOrders.get(i).getListOfPizzas().size(); j++) {
+                Pizza pizza = listOfOrders.get(i).getListOfPizzas().get(j);
                 switch (pizza.getPizzaNumber()) {
                     case 1 -> margarino++;
                     case 2 -> vesuvio++;
@@ -57,8 +62,8 @@ public class Statistics {
 
 
     public void soutTotalPizzaPricePerOrder(){
-        for (int i = 0; i < listOfOrders.length; i++) {
-            System.out.println(listOfOrders[i].getTotalPizzaPrice());
+        for (int i = 0; i < listOfOrders.size(); i++) {
+            System.out.println(listOfOrders.get(i).getTotalPizzaPrice());
         }
     }
 }
