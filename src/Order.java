@@ -41,4 +41,14 @@ public class Order {
                 ", hasBeenPickedUp=" + hasBeenPickedUp +
                 '}';
     }
+
+    public String getCustomerPhoneNumber()
+    {
+        return customerPhoneNumber;
+    }
+
+    public void setCustomerPhoneNumber(String customerPhoneNumber)
+    {
+        this.customerPhoneNumber = customerPhoneNumber;
+    }
 }

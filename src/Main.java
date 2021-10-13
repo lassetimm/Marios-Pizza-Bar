@@ -18,7 +18,7 @@ public class Main {
     static Pizza carbona = new Pizza ("Carbona", 65, 5, new String[]{"Tomatoes", "Cheese", "Bolognese", "Spaghetti", "Sausage", "Oregano"});
     static Pizza leBlissola = new Pizza ("Le Blissola", 62, 6, new String[]{"Tomatoes", "Cheese", "Ham", "Prawns", "Oregano"});
     static Pizza silvia = new Pizza ("Silvia", 65, 7, new String[]{"Tomatoes", "Cheese", "Pepperoni", "Bell Pepper", "Onions", "Olives", "Oregano"});
-    
+
     static Menu primaryMenu = new Menu(new Pizza[]{margarita, vesuvio, hawaii, pepperoni, carbona, leBlissola, silvia}, "MainMenu", Pizza.extras,10);
 
     static Statistics stats = new Statistics();
@@ -94,4 +94,19 @@ public class Main {
 
     }
 
+    public static void removeOrder(String orderToDelete){
+        for (int i = 0; i <currentOrders.size(); i++) {
+            if (currentOrders.get(i).getCustomerPhoneNumber().equals(orderToDelete)) {
+                currentOrders.remove(i);
+            }
+        }
+    }
+    public static void changeOrder(String orderToChange){
+        for (int i = 0; i <currentOrders.size(); i++) {
+            if (currentOrders.get(i).getCustomerPhoneNumber().equals(orderToChange)) {
+
+            }
+
+        }
+    }
 }
