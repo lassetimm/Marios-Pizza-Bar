@@ -101,6 +101,46 @@ public class Main {
         }
     }
 
+
+    public static String getPhoneNumber(){
+        String phoneNumber = "";
+        System.out.println("Please insert an 8 digit phone number so i can delete the correct order.");
+        boolean containsOtherThanDigits = true;
+        while (containsOtherThanDigits){
+            containsOtherThanDigits = false;
+            phoneNumber = scan.nextLine();
+            if (phoneNumber.length() == 8){
+                for (int i = 0; i < phoneNumber.length(); i++) {
+                    char x = phoneNumber.charAt(i);
+                    if (!Character.isDigit(x)){
+                        System.out.println("Please only type digits.");
+                        containsOtherThanDigits = true;
+                        break;
+                    }
+                }
+            }
+            else{
+                System.out.println("The given number is not 8 digits. try again.");
+                containsOtherThanDigits = true;
+            }
+        }
+        return phoneNumber;
+    }
+
+    public static void removeOrder(String orderToDelete){
+        for (int i = 0; i <currentOrders.size(); i++) {
+            if (currentOrders.get(i).getCustomerPhoneNumber().equals(orderToDelete)) {
+                currentOrders.remove(i);
+            }
+        }
+    }
+    public static void changeOrder(String orderToChange){
+        for (int i = 0; i <currentOrders.size(); i++) {
+            if (currentOrders.get(i).getCustomerPhoneNumber().equals(orderToChange)) {
+            }
+        }
+    }
+
     static void doChoice(int choice){
         switch (choice){
             case 1:
@@ -112,7 +152,8 @@ public class Main {
                 break;
             case 3:
                 //Delete order
-                System.out.println("You are in: 3");
+                String phoneNumberToDelete = getPhoneNumber();
+                removeOrder(phoneNumberToDelete);
                 break;
             case 4:
                 //Move order from "notServed" to "served"
@@ -131,11 +172,7 @@ public class Main {
                 System.out.println("You are in: 7");
                 break;
         }
-
     }
-
-
-
 
 
     public static void main(String[] args) {
@@ -145,20 +182,5 @@ public class Main {
         }
 
 
-    }
-
-    public static void removeOrder(String orderToDelete){
-        for (int i = 0; i <currentOrders.size(); i++) {
-            if (currentOrders.get(i).getCustomerPhoneNumber().equals(orderToDelete)) {
-                currentOrders.remove(i);
-            }
-        }
-    }
-    public static void changeOrder(String orderToChange){
-        for (int i = 0; i <currentOrders.size(); i++) {
-            if (currentOrders.get(i).getCustomerPhoneNumber().equals(orderToChange)) {
-            }
-
-        }
     }
 }
