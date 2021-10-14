@@ -163,7 +163,7 @@ public class Main {
         doChoice(choice);
         if (choice == 8 && currentOrders.size() == 0){
             stats.countAndSortPizzasFromOrders();
-            stats.payEmployees(stats.calculateTotalPizzaPrice());
+            stats.payEmployees(stats.calculateTotalPizzaPrice2());
             return false;
         }
         else{
@@ -213,6 +213,7 @@ public class Main {
             case 7:
                 //Show today's current stats
                 stats.countAndSortPizzasFromOrders();
+                stats.exitStatistics();
                 break;
             case 8:
                 //End day

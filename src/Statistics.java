@@ -141,7 +141,7 @@ public class Statistics {
 
     public void exitStatistics(){
         String lineBreak = "\n";
-        String exitStatsText = "Press 'q' to exit stats";
+        String exitStatsText = "Press enter to exit stats";
         System.out.println(lineBreak + exitStatsText);
         String exitStats = scan.nextLine();
     }
