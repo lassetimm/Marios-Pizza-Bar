@@ -48,7 +48,7 @@ public class Order {
 
         return  "OrderNo.: " + customerPhoneNumber +
                 "\nPizzas           -   " + pizzas +
-                "\nTotal Price      -   " + totalPizzaPrice +
+                "\nTotal Price      -   " + totalPizzaPrice + ",-" +
                 "\nCustomer Name    -   " + customerName +
                 "\nTime Of Pickup   -   " + timeOfPickUp +
                 "\nPicked Up?       -   " + hasBeenPickedUp;
