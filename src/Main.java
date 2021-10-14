@@ -23,7 +23,7 @@ public class Main {
     static Menu primaryMenu = new Menu(new Pizza[]{margarita, vesuvio, hawaii, pepperoni, carbona, leBlissola, silvia}, "MainMenu", Pizza.extras,10);
 
     //Statistic
-    static Statistics stats = new Statistics();
+    static Statistics stats = new Statistics(primaryMenu);
 
     //=============================================================METHODS=======================================================
 
@@ -68,7 +68,7 @@ public class Main {
     static void chooseExstra(Pizza pizza){
         System.out.println("========================================");
         System.out.println("Add extra ingredients?");
-        System.out.println("1. yes\n2. no\n");
+        System.out.println("1. Yes\n2. No\n");
         int choice = validateUserIntInput(1, 2);
         if (choice == 1){
             Pizza.viewExtras();
@@ -161,7 +161,9 @@ public class Main {
         callOptions();
         int choice = validateUserIntInput(1, 8);
         doChoice(choice);
-        if (choice == 8){
+        if (choice == 8 && currentOrders.size() == 0){
+            stats.countAndSortPizzasFromOrders();
+            stats.payEmployees(stats.calculateTotalPizzaPrice2());
             return false;
         }
         else{
@@ -211,10 +213,13 @@ public class Main {
             case 7:
                 //Show today's current stats
                 stats.countAndSortPizzasFromOrders();
+                stats.exitStatistics();
                 break;
             case 8:
                 //End day
                 //sæt stattistics metode her
+                String endDay = currentOrders.size() == 0 ? "After a long day of work, you can finally go home" : "You cannot end the day when orders still need to be made. Make the rest and then go home.";
+                System.out.println(endDay);
                 break;
         }
     }

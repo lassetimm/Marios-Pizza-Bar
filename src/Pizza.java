@@ -84,7 +84,7 @@ public class Pizza {
     public String toString() {
         String toReturn = "Pizza {" +
                 "Name = '" + pizzaName + '\'' +
-                ", Price = " + pizzaPrice +
+                ", Price = " + pizzaPrice + ",-" +
                 ", Number = " + pizzaNumber +
                 ", Ingredients = " + Arrays.toString(ingredients) +
                 ", Exstras = " + getChoosenExtras() +
@@ -92,7 +92,7 @@ public class Pizza {
         if (choosenExtras.size() == 0){
             toReturn = "Pizza {" +
                     "Name = '" + pizzaName + '\'' +
-                    ", Price = " + pizzaPrice +
+                    ", Price = " + pizzaPrice + ",-" +
                     ", Number = " + pizzaNumber +
                     ", Ingredients = " + Arrays.toString(ingredients) +
                     '}';
