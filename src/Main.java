@@ -163,6 +163,7 @@ public class Main {
         doChoice(choice);
         if (choice == 8 && currentOrders.size() == 0){
             stats.countAndSortPizzasFromOrders();
+            stats.payEmployees(stats.calculateTotalPizzaPrice());
             return false;
         }
         else{
