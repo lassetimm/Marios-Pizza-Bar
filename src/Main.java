@@ -150,17 +150,18 @@ public class Main {
         System.out.println("Press 1 for: Make new order.");
         System.out.println("Press 2 for: Change existing order.");
         System.out.println("Press 3 for: Delete order.");
-        System.out.println("Press 4 for: Move order from \"notServed\" to \"Served\" list.");
+        System.out.println("Press 4 for: Move order from \"currentOrder\" to \"Stats\" list.");
         System.out.println("Press 5 for: Show menu");
-        System.out.println("Press 6 for: Show today's current stats.");
-        System.out.println("Press 7 for: End day.");
+        System.out.println("Press 6 for: Show current orders");
+        System.out.println("Press 7 for: Show today's current stats.");
+        System.out.println("Press 8 for: End day.");
     }
 
     public static boolean getChoice(){
         callOptions();
-        int choice = validateUserIntInput(1, 7);
+        int choice = validateUserIntInput(1, 8);
         doChoice(choice);
-        if (choice == 7){
+        if (choice == 8){
             return false;
         }
         else{
@@ -194,24 +195,26 @@ public class Main {
                 break;
             case 3:
                 //Delete order
-                //String phoneNumberToDelete = getPhoneNumber();
+                System.out.println("You are in: 3");
                 //removeOrder(phoneNumberToDelete);
                 break;
             case 4:
                 completeOrder();
                 break;
             case 5:
-                //See menu
                 primaryMenu.seeMenu();
                 break;
             case 6:
-                //Show today's current stats
-                System.out.println("You are in: 6");
-                stats.countAndSortPizzasFromOrders();
+                //Show currentOrder
+                viewCurrentOrders();
                 break;
             case 7:
+                //Show today's current stats
+                stats.countAndSortPizzasFromOrders();
+                break;
+            case 8:
                 //End day
-                System.out.println("You are in: 7");
+                //sæt stattistics metode her
                 break;
         }
     }
