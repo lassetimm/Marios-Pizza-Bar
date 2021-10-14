@@ -79,7 +79,7 @@ public class Statistics {
 
         calculateTotalPizzaAmount(pizzas);
         calculateTotalPizzaPrice();
-        exitStatistics();
+        //exitStatistics();
         margaritaCounter = 0;
         vesuvioCounter = 0;
         hawaiiCounter = 0;
@@ -123,7 +123,8 @@ public class Statistics {
                 turnoverWithTax = turnoverWithTax - employeeWorkingSalary;
                 System.out.println(moneyAfterTaxAndEmployeePayText + turnoverWithTax + ",-");
             }
-        } else {
+        }
+        else {
             String youDidntMakeEnoughToPayEmplyees = "You didnt make enough to pay your employees today";
             System.out.println(youDidntMakeEnoughToPayEmplyees);
         }
