@@ -4,9 +4,9 @@ import java.util.Scanner;
 
 public class Main {
 
-    static ArrayList<Pizza> PizzasToOrder = new ArrayList<>();
     static Scanner scan = new Scanner(System.in);
 
+    static ArrayList<Pizza> PizzasToOrder = new ArrayList<>();
     static ArrayList<Order> currentOrders = new ArrayList<>();
 
 
@@ -19,45 +19,113 @@ public class Main {
     static Pizza leBlissola = new Pizza ("Le Blissola", 62, 6, new String[]{"Tomatoes", "Cheese", "Ham", "Prawns", "Oregano"});
     static Pizza silvia = new Pizza ("Silvia", 65, 7, new String[]{"Tomatoes", "Cheese", "Pepperoni", "Bell Pepper", "Onions", "Olives", "Oregano"});
 
-    static Menu primaryMenu = new Menu(new Pizza[]{margarita, vesuvio, hawaii, pepperoni, carbona, leBlissola, silvia}, "MainMenu", Pizza.extras, 10);
+    //Menu
+    static Menu primaryMenu = new Menu(new Pizza[]{margarita, vesuvio, hawaii, pepperoni, carbona, leBlissola, silvia}, "MainMenu", Pizza.extras,10);
 
+    //Statistic
     static Statistics stats = new Statistics();
 
+    //=============================================================METHODS=======================================================
 
-
-
-
+    // =========> MADE BY CHRISTIAN <=========
     static void takeNewOrder(){
 
+        ArrayList<Pizza> PizzasToOrder = new ArrayList<>();
         Order newOrder;
 
+        System.out.println("========================================");
+        System.out.println("|     T A K E   N E W   O R D E R      |");
+        System.out.println("========================================");
         System.out.println("Insert the following infomation");
         System.out.println("    - Customer name:");
-        String customerName = scan.nextLine();
+        String customerName = scan.next() + scan.nextLine();
         System.out.println("    - Customer Phone Number:");
-        String customerPhoneNum = scan.nextLine();
-        System.out.println("    - time of pickup:");
-        String timeOfPickup = scan.nextLine();
+        String customerPhoneNum = scan.next() + scan.nextLine();
+        System.out.println("    - Time of pickup:");
+        String timeOfPickup = scan.next() + scan.nextLine();
         System.out.println("    - What pizzas:\n" +
                 "Press q when your done");
+        primaryMenu.seeMenu();
 
         while (scan.hasNextInt()){
 
-            System.out.println(primaryMenu.toString());
             int pizzaNumber = validateUserIntInput(1, primaryMenu.getListOfPizza().length);
-            PizzasToOrder.add(primaryMenu.getPizzaFromListOfPizza(pizzaNumber - 1));
-            System.out.println(primaryMenu.getPizzaFromListOfPizza(pizzaNumber - 1));
+            Pizza pizzaToOrder = primaryMenu.getPizzaFromListOfPizza(pizzaNumber - 1);
+            PizzasToOrder.add(pizzaToOrder);
+            chooseExstra(pizzaToOrder);
+            System.out.println(pizzaToOrder);
         }
 
+        String scannerDone = scan.next();
         newOrder = new Order(PizzasToOrder, customerName, customerPhoneNum, timeOfPickup);
         currentOrders.add(newOrder);
         stats.addToListOfOrders(newOrder);
         System.out.println(newOrder.toString());
 
+        scan.reset();
+
+    }
+    // =========> MADE BY CHRISTIAN <=========
+    static void chooseExstra(Pizza pizza){
+        System.out.println("========================================");
+        System.out.println("Add extra ingredients?");
+        System.out.println("1. yes\n2. no\n");
+        int choice = validateUserIntInput(1, 2);
+        if (choice == 1){
+            Pizza.viewExtras();
+            System.out.println("Choose extra ingedient\nPress \'q\' to stop");
+            while (scan.hasNextInt()) {
+                int extraIndexNum = validateUserIntInput(1, Pizza.extras.length);
+                String extraIngredient = Pizza.extras[extraIndexNum - 1];
+                pizza.addToChoosenExtras(extraIngredient);
+                pizza.addToPizzaPrice(primaryMenu.getExtraPrice());
+            }
+            String scannerDone = scan.next();
+            scan.reset();
+        }
+    }
+    // =========> MADE BY CHRISTIAN <=========
+    static void viewCurrentOrders(){
+        String pluralOrder = " orders";
+        if (currentOrders.size() == 1){
+            pluralOrder = " order";
+        }
+
+        System.out.println("========================================");
+        System.out.println("|     C U R R E N T   O R D E R S      |");
+        System.out.println("========================================");
+        System.out.println("There are " + currentOrders.size() +  pluralOrder);
+        for (int i = 1; i <= currentOrders.size(); i++) {
+            System.out.println(i + ". " + currentOrders.get(i - 1));
+        }
     }
 
+    // =========> MADE BY CHRISTIAN <=========
+    static void completeOrder(){
 
+        System.out.println("========================================");
+        System.out.println("|     C O M P L E T E   O R D E R      |");
+        System.out.println("========================================");
 
+        viewCurrentOrders();
+
+        System.out.println("========================================");
+        System.out.println("What order have been picked up");
+        int getOrder = validateUserIntInput(1, currentOrders.size());
+
+        currentOrders.get(getOrder - 1).setHasBeenPickedUp(true);
+
+        for (int i = 0; i < currentOrders.size(); i++) {
+
+            if (currentOrders.get(i).getHasBeenPickedUp()){
+                stats.addToListOfOrders(currentOrders.get(i));
+                currentOrders.remove(i);
+                break;
+            }
+        }
+    }
+
+    // =========> MADE BY CHRISTIAN <=========
     static int validateUserIntInput(int minValue, int maxValue){
         int returnNum = 0;
         boolean run = true;
@@ -68,7 +136,7 @@ public class Main {
                     run = false;
                 }
                 else {
-                    System.out.println("The number has to be between " + (minValue - 1) + " and " + (maxValue + 1));
+                    System.out.println("The number has to be between " + (minValue) + " and " + (maxValue));
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input! try a number");
@@ -101,32 +169,6 @@ public class Main {
         }
     }
 
-
-    public static String getPhoneNumber(){
-        String phoneNumber = "";
-        System.out.println("Please insert an 8 digit phone number so i can delete the correct order.");
-        boolean containsOtherThanDigits = true;
-        while (containsOtherThanDigits){
-            containsOtherThanDigits = false;
-            phoneNumber = scan.nextLine();
-            if (phoneNumber.length() == 8){
-                for (int i = 0; i < phoneNumber.length(); i++) {
-                    char x = phoneNumber.charAt(i);
-                    if (!Character.isDigit(x)){
-                        System.out.println("Please only type digits.");
-                        containsOtherThanDigits = true;
-                        break;
-                    }
-                }
-            }
-            else{
-                System.out.println("The given number is not 8 digits. try again.");
-                containsOtherThanDigits = true;
-            }
-        }
-        return phoneNumber;
-    }
-
     public static void removeOrder(String orderToDelete){
         for (int i = 0; i <currentOrders.size(); i++) {
             if (currentOrders.get(i).getCustomerPhoneNumber().equals(orderToDelete)) {
@@ -134,6 +176,7 @@ public class Main {
             }
         }
     }
+
     public static void changeOrder(String orderToChange){
         for (int i = 0; i <currentOrders.size(); i++) {
             if (currentOrders.get(i).getCustomerPhoneNumber().equals(orderToChange)) {
@@ -152,12 +195,11 @@ public class Main {
                 break;
             case 3:
                 //Delete order
-                String phoneNumberToDelete = getPhoneNumber();
-                removeOrder(phoneNumberToDelete);
+                //String phoneNumberToDelete = getPhoneNumber();
+                //removeOrder(phoneNumberToDelete);
                 break;
             case 4:
-                //Move order from "notServed" to "served"
-                System.out.println("You are in: 4");
+                completeOrder();
                 break;
             case 5:
                 //See menu
@@ -182,7 +224,6 @@ public class Main {
         while (choice){
             choice = getChoice();
         }
-
 
     }
 }

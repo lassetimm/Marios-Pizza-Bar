@@ -28,18 +28,30 @@ public class Order {
         return listOfPizzas;
     }
 
+    public boolean getHasBeenPickedUp() {
+        return hasBeenPickedUp;
+    }
+
+    public void setHasBeenPickedUp(boolean hasBeenPickedUp) {
+        this.hasBeenPickedUp = hasBeenPickedUp;
+    }
 
     @Override
     public String toString() {
 
-        return "Order{" +
-                "listOfPizzas=" + listOfPizzas +
-                ", totalPizzaPrice=" + totalPizzaPrice +
-                ", customerName='" + customerName + '\'' +
-                ", customerPhoneNumber='" + customerPhoneNumber + '\'' +
-                ", timeOfPickUp='" + timeOfPickUp + '\'' +
-                ", hasBeenPickedUp=" + hasBeenPickedUp +
-                '}';
+        String pizzas = "";
+
+        for (Pizza pizza : listOfPizzas) {
+
+            pizzas +=  pizza.toString() + "\n" + "                 -   ";
+        }
+
+        return  "OrderNo.: " + customerPhoneNumber +
+                "\nPizzas           -   " + pizzas +
+                "\nTotal Price      -   " + totalPizzaPrice +
+                "\nCustomer Name    -   " + customerName +
+                "\nTime Of Pickup   -   " + timeOfPickUp +
+                "\nPicked Up?       -   " + hasBeenPickedUp;
     }
 
     public String getCustomerPhoneNumber()
