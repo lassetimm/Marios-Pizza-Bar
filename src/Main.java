@@ -26,10 +26,6 @@ public class Main {
 
     static Statistics stats = new Statistics();
 
-
-
-
-
     static void takeNewOrder(){
 
         Order newOrder;
@@ -92,8 +88,10 @@ public class Main {
 
 
     public static void main(String[] args) {
-
         takeNewOrder();
+        stats.countAndSortPizzasFromOrders();
+
+        //takeNewOrder();
 
     }
 
