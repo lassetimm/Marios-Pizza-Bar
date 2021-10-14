@@ -59,7 +59,6 @@ public class Main {
         String scannerDone = scan.next();
         newOrder = new Order(PizzasToOrder, customerName, customerPhoneNum, timeOfPickup);
         currentOrders.add(newOrder);
-        stats.addToListOfOrders(newOrder);
         System.out.println(newOrder.toString());
 
         scan.reset();
