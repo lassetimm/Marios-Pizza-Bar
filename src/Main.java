@@ -23,7 +23,7 @@ public class Main {
     static Menu primaryMenu = new Menu(new Pizza[]{margarita, vesuvio, hawaii, pepperoni, carbona, leBlissola, silvia}, "MainMenu", Pizza.extras,10);
 
     //Statistic
-    static Statistics stats = new Statistics();
+    static Statistics stats = new Statistics(primaryMenu);
 
     //=============================================================METHODS=======================================================
 
@@ -68,7 +68,7 @@ public class Main {
     static void chooseExstra(Pizza pizza){
         System.out.println("========================================");
         System.out.println("Add extra ingredients?");
-        System.out.println("1. yes\n2. no\n");
+        System.out.println("1. Yes\n2. No\n");
         int choice = validateUserIntInput(1, 2);
         if (choice == 1){
             Pizza.viewExtras();
