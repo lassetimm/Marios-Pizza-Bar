@@ -161,7 +161,8 @@ public class Main {
         callOptions();
         int choice = validateUserIntInput(1, 8);
         doChoice(choice);
-        if (choice == 8){
+        if (choice == 8 && currentOrders.size() == 0){
+            stats.countAndSortPizzasFromOrders();
             return false;
         }
         else{
@@ -215,6 +216,8 @@ public class Main {
             case 8:
                 //End day
                 //sæt stattistics metode her
+                String endDay = currentOrders.size() == 0 ? "After a long day of work, you can finally go home" : "You cannot end the day when orders still need to be made. Make the rest and then go home.";
+                System.out.println(endDay);
                 break;
         }
     }
