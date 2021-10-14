@@ -166,6 +166,7 @@ public class Main {
             case 6:
                 //Show today's current stats
                 System.out.println("You are in: 6");
+                stats.countAndSortPizzasFromOrders();
                 break;
             case 7:
                 //End day
@@ -176,6 +177,7 @@ public class Main {
 
 
     public static void main(String[] args) {
+
         boolean choice = true;
         while (choice){
             choice = getChoice();

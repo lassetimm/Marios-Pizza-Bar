@@ -1,6 +1,9 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Statistics {
+
+    static Scanner scan = new Scanner(System.in);
 
     static Pizza margarita = new Pizza ("Margarita", 57, 1,new String[]{"Tomatoes", "Cheese", "Oregano"});
     static Pizza vesuvio = new Pizza ("Vesuvio", 57, 2, new String[]{"Tomatoes", "Cheese", "Ham", "Oregano"});
@@ -55,20 +58,28 @@ public class Statistics {
                 mostsold = pizzas[i];
             }
         }
+        System.out.println("\nYour most bought pizzas:");
         for (int i = mostsold; i >= 0 ; i--) {
             for (int j = 0; j < pizzas.length; j++) {
-                if (i == pizzas[j]){
-                    System.out.println(pizzaNames[j] + " has been sold " + i + " times");
+                if (pizzaNames[j].length() <= 8) {
+                    if (i == pizzas[j]) {
+                        System.out.println(pizzaNames[j] + "\t\t\t\t" + "bought " + i + " times");
+                    }
+                } else {
+                    if (i == pizzas[j]) {
+                        System.out.println(pizzaNames[j] + "\t\t\t" + "bought " + i + " times");
+                    }
                 }
             }
         }
+
         calculateAllPizzasAmount(pizzas);
         calculateTotalPizzaPrice();
+        exitStatistics();
     }
 
-
     public void calculateAllPizzasAmount(int[] pizzas){
-        String totalAmountOfPizzas = "\nTotal amount of pizzas sold";
+        String totalAmountOfPizzas = "\nTotal amount of pizzas sold:";
         int sum = 0;
         for (int i = 0; i < pizzas.length; i++) {
                 sum += pizzas[i];
@@ -77,9 +88,39 @@ public class Statistics {
     }
 
     public void calculateTotalPizzaPrice(){
-        String earningsMsg = "You have earned";
+        int totalTurnover = 0;
+        String turnoverMsg = "Your turnover today is: ";
+        String turnoverMsgWithTax = "Your earnings after taxes: ";
         for (int i = 0; i < listOfOrders.size(); i++) {
-            System.out.println(earningsMsg + " " + listOfOrders.get(i).getTotalPizzaPrice() + "Kr");
+            totalTurnover += listOfOrders.get(i).getTotalPizzaPrice();
         }
+        System.out.println(turnoverMsg + " " + totalTurnover + "Kr");
+         int turnoverWithTax = (totalTurnover / 4) * 3;
+        System.out.println(turnoverMsgWithTax + turnoverWithTax + "Kr");
+        payEmployees(turnoverWithTax);
+    }
+
+    public void payEmployees(int turnoverWithTax) {
+        int employeeWorkingSalary = 8 * 120;
+        if (turnoverWithTax >= employeeWorkingSalary) {
+            String payEmployeesText = "You earned enough to pay your employees today\nDo you want to pay Alfonso? 'y' 'n'";
+            System.out.println(payEmployeesText);
+            String answer = scan.nextLine();
+            String moneyAfterTaxAndEmployeePayText = "Your earnings after tax and employee pay: ";
+            if (answer.equals("y")) {
+                turnoverWithTax = turnoverWithTax - employeeWorkingSalary;
+                System.out.println(moneyAfterTaxAndEmployeePayText + turnoverWithTax + "Kr");
+            }
+        } else {
+            String youDidntMakeEnoughToPayEmplyees = "You didnt make enough to pay your employees today";
+            System.out.println(youDidntMakeEnoughToPayEmplyees);
+        }
+    }
+
+    public void exitStatistics(){
+        String lineBreak = "\n";
+        String exitStatsText = "Press 'q' to exit stats";
+        System.out.println(lineBreak + exitStatsText);
+        String exitStats = scan.nextLine();
     }
 }
