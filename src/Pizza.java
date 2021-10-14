@@ -18,8 +18,16 @@ public class Pizza {
         this.ingredients = ingredients;
     }
 
-    public int getPizzaPrice() {
-        return pizzaPrice;
+
+
+    public String[] getIngredients()
+    {
+        return ingredients;
+    }
+
+    public void setIngredients(String[] ingredients)
+    {
+        this.ingredients = ingredients;
     }
 
     public String getPizzaName()
@@ -30,6 +38,11 @@ public class Pizza {
     public void setPizzaName(String pizzaName)
     {
         this.pizzaName = pizzaName;
+    }
+
+    public int getPizzaPrice()
+    {
+        return pizzaPrice;
     }
 
     public void setPizzaPrice(int pizzaPrice)
@@ -51,15 +64,6 @@ public class Pizza {
         this.pizzaNumber = pizzaNumber;
     }
 
-    public String[] getIngredients()
-    {
-        return ingredients;
-    }
-
-    public void setIngredients(String[] ingredients)
-    {
-        this.ingredients = ingredients;
-    }
 
     static void viewExtras(){
 

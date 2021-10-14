@@ -4,10 +4,11 @@ import java.util.Scanner;
 
 public class Main {
 
+    static ArrayList<Pizza> PizzasToOrder = new ArrayList<>();
     static Scanner scan = new Scanner(System.in);
 
-
     static ArrayList<Order> currentOrders = new ArrayList<>();
+
 
     //All pizzas
     static Pizza margarita = new Pizza ("Margarita", 57, 1,new String[]{"Tomatoes", "Cheese", "Oregano"});
@@ -149,17 +150,84 @@ public class Main {
     private static void callOptions(){
         System.out.println("What do you want to do?");
         System.out.println("Press 1 for: Make new order.");
-        System.out.println("Press 2 for: Delete order");
-        System.out.println("Press 3 for: Move order from \"notServed\" to \"Served\" list");
-        System.out.println("Press 4 for: End day");
+        System.out.println("Press 2 for: Change existing order.");
+        System.out.println("Press 3 for: Delete order.");
+        System.out.println("Press 4 for: Move order from \"notServed\" to \"Served\" list.");
+        System.out.println("Press 5 for: Show menu");
+        System.out.println("Press 6 for: Show today's current stats.");
+        System.out.println("Press 7 for: End day.");
     }
+
+    public static boolean getChoice(){
+        callOptions();
+        int choice = validateUserIntInput(1, 7);
+        doChoice(choice);
+        if (choice == 7){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+
+
+
+    public static void removeOrder(String orderToDelete){
+        for (int i = 0; i <currentOrders.size(); i++) {
+            if (currentOrders.get(i).getCustomerPhoneNumber().equals(orderToDelete)) {
+                currentOrders.remove(i);
+            }
+        }
+    }
+
+    public static void changeOrder(String orderToChange){
+        for (int i = 0; i <currentOrders.size(); i++) {
+            if (currentOrders.get(i).getCustomerPhoneNumber().equals(orderToChange)) {
+            }
+        }
+    }
+
+    static void doChoice(int choice){
+        switch (choice){
+            case 1:
+                takeNewOrder();
+                break;
+            case 2:
+                //Change existing order
+                System.out.println("You are in: 2");
+                break;
+            case 3:
+                //Delete order
+                //String phoneNumberToDelete = getPhoneNumber();
+                //removeOrder(phoneNumberToDelete);
+                break;
+            case 4:
+                //Move order from "notServed" to "served"
+                System.out.println("You are in: 4");
+                break;
+            case 5:
+                //See menu
+                primaryMenu.seeMenu();
+                break;
+            case 6:
+                //Show today's current stats
+                System.out.println("You are in: 6");
+                break;
+            case 7:
+                //End day
+                System.out.println("You are in: 7");
+                break;
+        }
+    }
+
 
 
     public static void main(String[] args) {
-
-
-
+        boolean choice = true;
+        while (choice){
+            choice = getChoice();
+        }
 
     }
-
 }

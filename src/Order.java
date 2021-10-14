@@ -9,7 +9,6 @@ public class Order {
     private String timeOfPickUp;
     private boolean hasBeenPickedUp = false;
 
-
     public Order(ArrayList<Pizza> listOfPizzas, String customerName, String customerPhoneNumber, String timeOfPickUp) {
         this.listOfPizzas = listOfPizzas;
         this.customerName = customerName;
@@ -53,5 +52,15 @@ public class Order {
                 "\nCustomer Name    -   " + customerName +
                 "\nTime Of Pickup   -   " + timeOfPickUp +
                 "\nPicked Up?       -   " + hasBeenPickedUp;
+    }
+
+    public String getCustomerPhoneNumber()
+    {
+        return customerPhoneNumber;
+    }
+
+    public void setCustomerPhoneNumber(String customerPhoneNumber)
+    {
+        this.customerPhoneNumber = customerPhoneNumber;
     }
 }
