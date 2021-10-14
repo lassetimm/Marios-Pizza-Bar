@@ -18,6 +18,7 @@ public class Statistics {
     private ArrayList<Order> listOfOrders = new ArrayList<>();
     private ArrayList<Integer> pizzas = new ArrayList<Integer>();
 
+
     private int margaritaCounter = 0;
     private int vesuvioCounter = 0;
     private int hawaiiCounter = 0;
