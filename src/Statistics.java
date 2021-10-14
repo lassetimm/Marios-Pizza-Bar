@@ -77,12 +77,20 @@ public class Statistics {
             }
         }
 
-        calculateAllPizzasAmount(pizzas);
+        calculateTotalPizzaAmount(pizzas);
         calculateTotalPizzaPrice();
         exitStatistics();
+        margaritaCounter = 0;
+        vesuvioCounter = 0;
+        hawaiiCounter = 0;
+        pepperoniCounter = 0;
+        carbonaCounter = 0;
+        leBlissolaCounter = 0;
+        silviaCounter = 0;
+
     }
 
-    public void calculateAllPizzasAmount(int[] pizzas){
+    public void calculateTotalPizzaAmount(int[] pizzas){
         String totalAmountOfPizzas = "\nTotal amount of pizzas sold:";
         int sum = 0;
         for (int i = 0; i < pizzas.length; i++) {
