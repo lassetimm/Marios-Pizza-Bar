@@ -104,7 +104,7 @@ public class Main {
 
     public static String getPhoneNumber(){
         String phoneNumber = "";
-        System.out.println("Please insert an 8 digit phone number so i can delete the correct order.");
+        System.out.println("Please insert an 8 digit phone number so i can find the correct order.");
         boolean containsOtherThanDigits = true;
         while (containsOtherThanDigits){
             containsOtherThanDigits = false;
@@ -180,7 +180,6 @@ public class Main {
         while (choice){
             choice = getChoice();
         }
-
 
     }
 }
