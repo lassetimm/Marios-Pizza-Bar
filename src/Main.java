@@ -4,9 +4,9 @@ import java.util.Scanner;
 
 public class Main {
 
-    static ArrayList<Pizza> PizzasToOrder = new ArrayList<>();
     static Scanner scan = new Scanner(System.in);
 
+    static ArrayList<Pizza> PizzasToOrder = new ArrayList<>();
     static ArrayList<Order> currentOrders = new ArrayList<>();
 
 
@@ -19,12 +19,13 @@ public class Main {
     static Pizza leBlissola = new Pizza ("Le Blissola", 62, 6, new String[]{"Tomatoes", "Cheese", "Ham", "Prawns", "Oregano"});
     static Pizza silvia = new Pizza ("Silvia", 65, 7, new String[]{"Tomatoes", "Cheese", "Pepperoni", "Bell Pepper", "Onions", "Olives", "Oregano"});
 
-
     //Menu
     static Menu primaryMenu = new Menu(new Pizza[]{margarita, vesuvio, hawaii, pepperoni, carbona, leBlissola, silvia}, "MainMenu", Pizza.extras,10);
 
     //Statistic
     static Statistics stats = new Statistics();
+
+    //=============================================================METHODS=======================================================
 
     // =========> MADE BY CHRISTIAN <=========
     static void takeNewOrder(){
@@ -145,8 +146,6 @@ public class Main {
         return returnNum;
     }
 
-
-
     private static void callOptions(){
         System.out.println("What do you want to do?");
         System.out.println("Press 1 for: Make new order.");
@@ -169,9 +168,6 @@ public class Main {
             return true;
         }
     }
-
-
-
 
     public static void removeOrder(String orderToDelete){
         for (int i = 0; i <currentOrders.size(); i++) {
@@ -203,8 +199,7 @@ public class Main {
                 //removeOrder(phoneNumberToDelete);
                 break;
             case 4:
-                //Move order from "notServed" to "served"
-                System.out.println("You are in: 4");
+                completeOrder();
                 break;
             case 5:
                 //See menu
@@ -222,8 +217,8 @@ public class Main {
     }
 
 
-
     public static void main(String[] args) {
+
         boolean choice = true;
         while (choice){
             choice = getChoice();
