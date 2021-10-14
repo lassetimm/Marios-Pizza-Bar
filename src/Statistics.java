@@ -87,7 +87,6 @@ public class Statistics {
         carbonaCounter = 0;
         leBlissolaCounter = 0;
         silviaCounter = 0;
-
     }
 
     public void calculateTotalPizzaAmount(int[] pizzas){
@@ -111,6 +110,16 @@ public class Statistics {
         System.out.println(turnoverMsgWithTax + turnoverWithTax + ",-");
         return turnoverWithTax;
     }
+
+    public int calculateTotalPizzaPrice2(){
+        int totalTurnover = 0;
+        for (int i = 0; i < listOfOrders.size(); i++) {
+            totalTurnover += listOfOrders.get(i).getTotalPizzaPrice();
+        }
+        int turnoverWithTax = (totalTurnover / 4) * 3;
+        return turnoverWithTax;
+    }
+
 
     public void payEmployees(int turnoverWithTax) {
         int employeeWorkingSalary = 8 * 120;
