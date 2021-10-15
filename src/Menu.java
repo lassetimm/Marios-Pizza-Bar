@@ -1,9 +1,13 @@
-// =========> MADE BY JOHANNES <=========
-public class Menu {
+public class Menu { // =========> MADE BY JOHANNES <=========
+
+    //================================ATRIBUTES===================================================
+
     private Pizza[] listOfPizza;
     private String menuName;
     private String[] extras;
     private int extraPrice;
+
+    //================================CONSTRUCTOR===================================================
 
     public Menu(Pizza[] listOfPizza, String menuName, String[] extras, int extraPrice) {
         this.listOfPizza = listOfPizza;
@@ -13,6 +17,8 @@ public class Menu {
     }
 
 
+    //================================CLASS METHODS===================================================
+
     public Pizza[] getListOfPizza() {
         return listOfPizza;
     }
@@ -20,7 +26,6 @@ public class Menu {
     public Pizza getPizzaFromListOfPizza(int indexNumber) {
         return listOfPizza[indexNumber];
     }
-
 
     public void seeMenu() {
         System.out.println("========================================");
@@ -60,8 +65,9 @@ public class Menu {
             }
             System.out.printf(pizza.getPizzaPrice() + ",-");
         }
-        System.out.println("\n\n\n");
+        System.out.println("\n");
     }
+
     //Metode som returnere extraPrice
     public int getExtraPrice() {
         return extraPrice;

@@ -1,9 +1,10 @@
-// =========> MADE BY LASSE <=========
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Statistics {
+public class Statistics { // =========> MADE BY LASSE <=========
+
+    //================================ATRIBUTES===================================================
+
     private Menu menu;
     private String[] pizzaNames;
 
@@ -20,6 +21,7 @@ public class Statistics {
     private int leBlissolaCounter = 0;
     private int silviaCounter = 0;
 
+    //================================CONSTRUCTOR===================================================
 
     public Statistics(Menu menu) {
         this.menu = menu;
@@ -32,10 +34,12 @@ public class Statistics {
 
     }
 
+
+    //================================CLASS METHODS===================================================
+
     public void addToListOfOrders(Order Order) {
         this.listOfOrders.add(Order);
     }
-
 
 
     public void countAndSortPizzasFromOrders() {
@@ -154,6 +158,7 @@ public class Statistics {
             System.out.println(youDidntMakeEnoughToPayEmplyees);
         }
     }
+
 
     public void exitStatistics() {
         String lineBreak = "\n";

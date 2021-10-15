@@ -6,12 +6,11 @@ public class Main {
     // =========START=========> MADE BY ALL <==================================================
     static Scanner scan = new Scanner(System.in);
 
-
     static int extraPriceTotal = 0;
-
+    //Orders
     static ArrayList<Order> currentOrders = new ArrayList<>();
 
-
+    // Pizzas
     static Pizza margarita = new Pizza ("Margarita", 57, 1,new String[]{"Tomatoes", "Cheese", "Oregano"});
     static Pizza vesuvio = new Pizza ("Vesuvio", 57, 2, new String[]{"Tomatoes", "Cheese", "Ham", "Oregano"});
     static Pizza hawaii = new Pizza ("Hawaii", 60, 3, new String[]{"Tomatoes", "Cheese", "Ham", "Pineapple", "Oregano"});
@@ -70,7 +69,6 @@ public class Main {
 		System.out.println("    - What pizza to add to order:\n" +
 				"Press q when your done");
 		primaryMenu.seeMenu();
-		System.out.println("\n\n\n");
 
 		while (scan.hasNextInt()){
 
@@ -84,7 +82,6 @@ public class Main {
 	}
 
 	static void chooseExstra(Pizza pizza){
-
 
         System.out.println("========================================");
 		System.out.println("Add extra ingredients?");
@@ -123,6 +120,7 @@ public class Main {
 	}
 
 	static void printCurrentOrders(){
+
 		for (int i = 1; i <= currentOrders.size(); i++) {
 			System.out.println(i + ". " + currentOrders.get(i - 1) + "\n");
 		}
@@ -134,7 +132,7 @@ public class Main {
 		System.out.println("|     C O M P L E T E   O R D E R      |");
 		System.out.println("========================================");
 
-		viewCurrentOrders();
+		printCurrentOrders();
 
 		System.out.println("========================================");
 		System.out.println("What order have been picked up");
@@ -153,6 +151,7 @@ public class Main {
 	}
 
 	static int validateUserIntInput(int minValue, int maxValue){
+
 		int returnNum = 0;
 		boolean run = true;
 		while (run) {
@@ -187,7 +186,6 @@ public class Main {
         switch (choice){
 
             case 1:// Pizzas
-
                 System.out.println("1. Choose a pizza to change:");
                 System.out.println("2. Add new pizza to order?");
                 int actionChoice = validateUserIntInput(1, 2);
@@ -240,6 +238,21 @@ public class Main {
 
     }
     // =========END=========> MADE BY CHRISTIAN <==================================================================
+
+
+    // =========START=========> MADE BY ELLA <==================================================================
+    public static void removeOrder(){
+        System.out.println("========================================");
+        System.out.println("|      D E L E T E   O R D E R         |");
+        System.out.println("========================================");
+        viewCurrentOrders();
+        System.out.println("========================================");
+        System.out.println("What order has been cancelled?");
+        int getOrder = validateUserIntInput(0, currentOrders.size());
+        currentOrders.remove(getOrder - 1);
+        System.out.println("Order " + getOrder + " has now been deleted.");
+    }
+    // =========END=========> MADE BY ELLA <==================================================================
 
 
     // =========START=========> MADE BY JOHANNES <==================================================================
@@ -304,22 +317,6 @@ public class Main {
             return true;
         }
     }
-    // =========END=========> MADE BY JOHANNES <==================================================================
-
-
-    // =========START=========> MADE BY ELLA <==================================================================
-    public static void removeOrder(){
-        System.out.println("========================================");
-        System.out.println("|      D E L E T E   O R D E R         |");
-        System.out.println("========================================");
-        viewCurrentOrders();
-        System.out.println("========================================");
-        System.out.println("What order has been cancelled?");
-        int getOrder = validateUserIntInput(0, currentOrders.size());
-        currentOrders.remove(getOrder - 1);
-        System.out.println("Order " + getOrder + " has now been deleted.");
-    }
-    // =========END=========> MADE BY ELLA <==================================================================
 
     public static void main(String[] args) {
         boolean choice = true;
@@ -327,4 +324,5 @@ public class Main {
             choice = getChoice();
         }
     }
+    // =========END=========> MADE BY JOHANNES <==================================================================
 }

@@ -1,14 +1,17 @@
-// =========> MADE BY CHRISTIAN <=========
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class Order {
-    private ArrayList<Pizza> listOfPizzas = new ArrayList<>();
-    private int totalPizzaPrice;
+public class Order { // =========> MADE BY CHRISTIAN <=========
+
+//================================ATRIBUTES===================================================
+
     private String customerName;
     private String customerPhoneNumber;
     private String timeOfPickUp;
+    private int totalPizzaPrice;
     private boolean hasBeenPickedUp = false;
+    private ArrayList<Pizza> listOfPizzas = new ArrayList<>();
+
+//================================CONSTRUCTOR===================================================
 
     public Order(ArrayList<Pizza> listOfPizzas, String customerName, String customerPhoneNumber, String timeOfPickUp) {
         this.listOfPizzas = listOfPizzas;
@@ -22,9 +25,7 @@ public class Order {
     }
 
 
-    public void addTotalPizzaPrice(int totalPizzaPrice) {
-        this.totalPizzaPrice += totalPizzaPrice;
-    }
+//================================CLASS METHODS===================================================
 
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
@@ -34,6 +35,16 @@ public class Order {
         return customerName;
     }
 
+
+    public void setCustomerPhoneNumber(String customerPhoneNumber) {
+        this.customerPhoneNumber = customerPhoneNumber;
+    }
+
+    public String getCustomerPhoneNumber() {
+        return customerPhoneNumber;
+    }
+
+
     public void setTimeOfPickUp(String timeOfPickUp) {
         this.timeOfPickUp = timeOfPickUp;
     }
@@ -42,9 +53,24 @@ public class Order {
         return timeOfPickUp;
     }
 
+
     public int getTotalPizzaPrice() {
         return totalPizzaPrice;
     }
+
+    public void addTotalPizzaPrice(int totalPizzaPrice) {
+        this.totalPizzaPrice += totalPizzaPrice;
+    }
+
+
+    public void setHasBeenPickedUp(boolean hasBeenPickedUp) {
+        this.hasBeenPickedUp = hasBeenPickedUp;
+    }
+
+    public boolean getHasBeenPickedUp() {
+        return hasBeenPickedUp;
+    }
+
 
     public ArrayList<Pizza> getListOfPizzas() {
         return listOfPizzas;
@@ -58,13 +84,6 @@ public class Order {
         return listOfPizzasToReturn;
     }
 
-    public boolean getHasBeenPickedUp() {
-        return hasBeenPickedUp;
-    }
-
-    public void setHasBeenPickedUp(boolean hasBeenPickedUp) {
-        this.hasBeenPickedUp = hasBeenPickedUp;
-    }
 
     public void printOrder(){
         System.out.println();
@@ -79,6 +98,7 @@ public class Order {
     public void addPizzaToOrder(Pizza pizzaToAdd){
         listOfPizzas.add(pizzaToAdd);
     }
+
 
     @Override
     public String toString() {
@@ -98,13 +118,5 @@ public class Order {
                 "\nPicked Up?       -   " + hasBeenPickedUp;
     }
 
-    public String getCustomerPhoneNumber()
-    {
-        return customerPhoneNumber;
-    }
 
-    public void setCustomerPhoneNumber(String customerPhoneNumber)
-    {
-        this.customerPhoneNumber = customerPhoneNumber;
-    }
 }
