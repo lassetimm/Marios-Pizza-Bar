@@ -1,3 +1,4 @@
+// =========> MADE BY LASSE <=========
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -40,6 +41,10 @@ public class Statistics {
 
 
     public void countAndSortPizzasFromOrders(){
+
+        System.out.println("========================================");
+        System.out.println("|  T O D A Y S    S T A T I S T I C S  |");
+        System.out.println("========================================");
 
         for (int i = 0; i < listOfOrders.size(); i++) {
             for (int j = 0; j < listOfOrders.get(i).getListOfPizzas().size(); j++) {
