@@ -232,11 +232,9 @@ public class Main {
 
     // =========> MADE BY JOHANNES <=========
     public static void main(String[] args) {
-
         boolean choice = true;
         while (choice){
             choice = getChoice();
         }
-
     }
 }
