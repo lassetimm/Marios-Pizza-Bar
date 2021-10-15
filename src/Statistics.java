@@ -1,4 +1,5 @@
 // =========> MADE BY LASSE <=========
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -23,10 +24,9 @@ public class Statistics {
         this.menu = menu;
         this.pizzaNames = new String[menu.getListOfPizza().length];
 
-        for (int i = 0; i < pizzaNames.length; i++){
+        for (int i = 0; i < pizzaNames.length; i++) {
             pizzaNames[i] = menu.getListOfPizza()[i].getPizzaName();
         }
-
 
 
     }
@@ -40,12 +40,16 @@ public class Statistics {
     }
 
 
-    public void countAndSortPizzasFromOrders(){
+    public void countAndSortPizzasFromOrders() {
 
         System.out.println("========================================");
         System.out.println("|  T O D A Y S    S T A T I S T I C S  |");
         System.out.println("========================================");
 
+        //Inde i metoden i main linje 119 bliver der lagt orders til list of orders jeg så bruger her.
+        //I den list of orders tager jeg fat i list of pizzas der ligger i den.
+        //Og fra den list of pizzas tager jeg fat i pizza nummeret.
+        //Hvis pizza nummeret er blevet bestilt lægger jeg det i min pizzacounter.
         for (int i = 0; i < listOfOrders.size(); i++) {
             for (int j = 0; j < listOfOrders.get(i).getListOfPizzas().size(); j++) {
                 Pizza pizza = listOfOrders.get(i).getListOfPizzas().get(j);
@@ -60,15 +64,17 @@ public class Statistics {
                 }
             }
         }
+
+        //Her sortere jeg pizzaerne så de mest købte kommer i toppen. Jeg sætter og \t in så det står pænt.
         int[] pizzas = {margaritaCounter, vesuvioCounter, hawaiiCounter, pepperoniCounter, carbonaCounter, leBlissolaCounter, silviaCounter};
         int mostsold = 0;
-        for (int i = 0; i < pizzas.length; i++){
-            if (pizzas[i] > mostsold){
+        for (int i = 0; i < pizzas.length; i++) {
+            if (pizzas[i] > mostsold) {
                 mostsold = pizzas[i];
             }
         }
         System.out.println("\nYour most bought pizzas:");
-        for (int i = mostsold; i >= 0 ; i--) {
+        for (int i = mostsold; i >= 0; i--) {
             for (int j = 0; j < pizzas.length; j++) {
                 if (pizzaNames[j].length() <= 8) {
                     if (i == pizzas[j]) {
@@ -84,7 +90,7 @@ public class Statistics {
 
         calculateTotalPizzaAmount(pizzas);
         calculateTotalPizzaPrice();
-        //exitStatistics();
+        exitStatistics();
         margaritaCounter = 0;
         vesuvioCounter = 0;
         hawaiiCounter = 0;
@@ -94,16 +100,19 @@ public class Statistics {
         silviaCounter = 0;
     }
 
-    public void calculateTotalPizzaAmount(int[] pizzas){
+        //Denne metode regner det samlede antal af solte pizza ud.
+    public void calculateTotalPizzaAmount(int[] pizzas) {
         String totalAmountOfPizzas = "\nTotal amount of pizzas sold:";
         int sum = 0;
         for (int i = 0; i < pizzas.length; i++) {
-                sum += pizzas[i];
+            sum += pizzas[i];
         }
         System.out.println(totalAmountOfPizzas + " '" + sum + "'");
     }
 
-    public int calculateTotalPizzaPrice(){
+        //Denne metode regner ud hvor meget alle pizzaerne er blevet solgt for.
+        //Og hvor meget det ville være efter 25% moms.
+    public int calculateTotalPizzaPrice() {
         int totalTurnover = 0;
         String turnoverMsg = "Your turnover today is: ";
         String turnoverMsgWithTax = "Your earnings after taxes: ";
@@ -111,12 +120,14 @@ public class Statistics {
             totalTurnover += listOfOrders.get(i).getTotalPizzaPrice();
         }
         System.out.println(turnoverMsg + " " + totalTurnover + ",-");
-         int turnoverWithTax = (totalTurnover / 4) * 3;
+        int turnoverWithTax = (totalTurnover / 4) * 3;
         System.out.println(turnoverMsgWithTax + turnoverWithTax + ",-");
         return turnoverWithTax;
     }
 
-    public int calculateTotalPizzaPrice2(){
+        //Denne metode bruger vi fordi der bliver printet i den forrige som vi ikke skal bruge.
+        //Vi skal bruge 'turnoverWithTax' uden noget print.
+    public int calculateTotalPizzaPrice2() {
         int totalTurnover = 0;
         for (int i = 0; i < listOfOrders.size(); i++) {
             totalTurnover += listOfOrders.get(i).getTotalPizzaPrice();
@@ -125,7 +136,8 @@ public class Statistics {
         return turnoverWithTax;
     }
 
-
+        //Dette er en lille sjov metode der ser om Mario har tjent nok
+        //til at betale Alfonso hans løn i slutning af dagen.
     public void payEmployees(int turnoverWithTax) {
         //8 er timer og 120 er time løn. Så 960 kr på en dag.
         int employeeWorkingSalary = 8 * 120;
@@ -138,17 +150,16 @@ public class Statistics {
                 turnoverWithTax = turnoverWithTax - employeeWorkingSalary;
                 System.out.println(moneyAfterTaxAndEmployeePayText + turnoverWithTax + ",-");
             }
-        }
-        else {
+        } else {
             String youDidntMakeEnoughToPayEmplyees = "You didnt make enough to pay your employees today";
             System.out.println(youDidntMakeEnoughToPayEmplyees);
         }
     }
 
-    public void exitStatistics(){
+    public void exitStatistics() {
         String lineBreak = "\n";
         String exitStatsText = "Press enter to exit stats";
         System.out.println(lineBreak + exitStatsText);
-        String exitStats = scan.nextLine();
+        scan.nextLine();
     }
 }
