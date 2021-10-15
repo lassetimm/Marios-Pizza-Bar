@@ -26,30 +26,18 @@ public class Pizza {
         return ingredients;
     }
 
-    public void setIngredients(String[] ingredients)
-    {
-        this.ingredients = ingredients;
-    }
 
     public String getPizzaName()
     {
         return pizzaName;
     }
 
-    public void setPizzaName(String pizzaName)
-    {
-        this.pizzaName = pizzaName;
-    }
 
     public int getPizzaPrice()
     {
         return pizzaPrice;
     }
 
-    public void setPizzaPrice(int pizzaPrice)
-    {
-        this.pizzaPrice = pizzaPrice;
-    }
     public void addToPizzaPrice(int pizzaPrice)
     {
         this.pizzaPrice += pizzaPrice;
@@ -59,12 +47,6 @@ public class Pizza {
     {
         return pizzaNumber;
     }
-
-    public void setPizzaNumber(int pizzaNumber)
-    {
-        this.pizzaNumber = pizzaNumber;
-    }
-
 
     static void viewExtras(){
 
@@ -79,14 +61,6 @@ public class Pizza {
 
     public void addToChoosenExtras(String extra) {
         this.choosenExtras.add(extra);
-    }
-
-    public void printPizza(){
-        System.out.println();
-        System.out.println("1. Pizza :      " + pizzaName);
-        System.out.println("2. Exstras :    " + choosenExtras);
-        System.out.println();
-
     }
 
     @Override
