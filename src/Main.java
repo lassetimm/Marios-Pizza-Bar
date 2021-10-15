@@ -3,7 +3,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
-    // =========> MADE BY ALL <=========
+    // =========START=========> MADE BY ALL <==================================================
     static Scanner scan = new Scanner(System.in);
 
 
@@ -25,10 +25,10 @@ public class Main {
 
 	//Statistic
 	static Statistics stats = new Statistics(primaryMenu);
+    // =========END=========> MADE BY ALL <==================================================
 
-	//=============================================================METHODS=======================================================
 
-	// =========> MADE BY CHRISTIAN <=========
+	// =========START=========> MADE BY CHRISTIAN <==================================================================
 	static void takeNewOrder(){
 
 		ArrayList<Pizza> pizzasToOrder = new ArrayList<>();
@@ -63,7 +63,7 @@ public class Main {
 		scan.reset();
 
 	}
-    // =========> MADE BY CHRISTIAN <=========
+
 	static ArrayList<Pizza> makeNewPizzas(){
 		ArrayList<Pizza> pizzasToOrder = new ArrayList<>();
 
@@ -83,7 +83,6 @@ public class Main {
 		return pizzasToOrder;
 	}
 
-	// =========> MADE BY CHRISTIAN <=========
 	static void chooseExstra(Pizza pizza){
 
 
@@ -106,7 +105,7 @@ public class Main {
 		}
 
 	}
-	// =========> MADE BY CHRISTIAN <=========
+
 	static void viewCurrentOrders(){
 		String pluralOrder = " orders";
 		if (currentOrders.size() == 1){
@@ -129,7 +128,6 @@ public class Main {
 		}
 	}
 
-	// =========> MADE BY CHRISTIAN <=========
 	static void completeOrder(){
 
 		System.out.println("========================================");
@@ -154,7 +152,6 @@ public class Main {
 		}
 	}
 
-	// =========> MADE BY CHRISTIAN <=========
 	static int validateUserIntInput(int minValue, int maxValue){
 		int returnNum = 0;
 		boolean run = true;
@@ -174,47 +171,6 @@ public class Main {
 		}
 		return returnNum;
 	}
-
-    // =========> MADE BY JOHANNES <=========
-    private static void callOptions(){
-        System.out.println("What do you want to do?" +
-                "\nPress 1 for: Make new order." +
-                "\nPress 2 for: Change existing order." +
-                "\nPress 3 for: Delete order." +
-                "\nPress 4 for: Move order from \"currentOrder\" to \"Stats\" list." +
-                "\nPress 5 for: Show menu" +
-                "\nPress 6 for: Show current orders" +
-                "\nPress 7 for: Show today's current stats." +
-                "\nPress 8 for: End day.");
-    }
-
-    // =========> MADE BY JOHANNES <=========
-    public static boolean getChoice(){
-        callOptions();
-        int choice = validateUserIntInput(1, 8);
-        doChoice(choice);
-        if (choice == 8 && currentOrders.size() == 0){
-            stats.countAndSortPizzasFromOrders();
-            stats.payEmployees(stats.calculateTotalPizzaPrice2());
-            return false;
-        }
-        else{
-            return true;
-        }
-    }
-
-    // =========> MADE BY ELLA <=========
-    public static void removeOrder(){
-            System.out.println("========================================");
-            System.out.println("|      D E L E T E   O R D E R         |");
-            System.out.println("========================================");
-            viewCurrentOrders();
-            System.out.println("========================================");
-            System.out.println("What order has been cancelled?");
-            int getOrder = validateUserIntInput(0, currentOrders.size());
-            currentOrders.remove(getOrder - 1);
-            System.out.println("Order " + getOrder + " has now been deleted.");
-    }
 
     public static void changeOrder(){
         System.out.println("========================================");
@@ -283,7 +239,10 @@ public class Main {
         }
 
     }
-    // =========> MADE BY JOHANNES <=========
+    // =========END=========> MADE BY CHRISTIAN <==================================================================
+
+
+    // =========START=========> MADE BY JOHANNES <==================================================================
     static void doChoice(int choice){
         switch (choice){
             case 1:
@@ -320,6 +279,47 @@ public class Main {
         }
     }
 
+    private static void callOptions(){
+        System.out.println("What do you want to do?" +
+                "\nPress 1 for: Make new order." +
+                "\nPress 2 for: Change existing order." +
+                "\nPress 3 for: Delete order." +
+                "\nPress 4 for: Move order from \"currentOrder\" to \"Stats\" list." +
+                "\nPress 5 for: Show menu" +
+                "\nPress 6 for: Show current orders" +
+                "\nPress 7 for: Show today's current stats." +
+                "\nPress 8 for: End day.");
+    }
+
+    public static boolean getChoice(){
+        callOptions();
+        int choice = validateUserIntInput(1, 8);
+        doChoice(choice);
+        if (choice == 8 && currentOrders.size() == 0){
+            stats.countAndSortPizzasFromOrders();
+            stats.payEmployees(stats.calculateTotalPizzaPrice2());
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+    // =========END=========> MADE BY JOHANNES <==================================================================
+
+
+    // =========START=========> MADE BY ELLA <==================================================================
+    public static void removeOrder(){
+        System.out.println("========================================");
+        System.out.println("|      D E L E T E   O R D E R         |");
+        System.out.println("========================================");
+        viewCurrentOrders();
+        System.out.println("========================================");
+        System.out.println("What order has been cancelled?");
+        int getOrder = validateUserIntInput(0, currentOrders.size());
+        currentOrders.remove(getOrder - 1);
+        System.out.println("Order " + getOrder + " has now been deleted.");
+    }
+    // =========END=========> MADE BY ELLA <==================================================================
 
     public static void main(String[] args) {
         boolean choice = true;
