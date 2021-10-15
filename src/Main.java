@@ -3,14 +3,13 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
-
+    // =========> MADE BY ALL <=========
     static Scanner scan = new Scanner(System.in);
 
-    static ArrayList<Pizza> PizzasToOrder = new ArrayList<>();
+
     static ArrayList<Order> currentOrders = new ArrayList<>();
 
 
-    //All pizzas
     static Pizza margarita = new Pizza ("Margarita", 57, 1,new String[]{"Tomatoes", "Cheese", "Oregano"});
     static Pizza vesuvio = new Pizza ("Vesuvio", 57, 2, new String[]{"Tomatoes", "Cheese", "Ham", "Oregano"});
     static Pizza hawaii = new Pizza ("Hawaii", 60, 3, new String[]{"Tomatoes", "Cheese", "Ham", "Pineapple", "Oregano"});
@@ -145,18 +144,20 @@ public class Main {
         return returnNum;
     }
 
+    // =========> MADE BY JOHANNES <=========
     private static void callOptions(){
-        System.out.println("What do you want to do?");
-        System.out.println("Press 1 for: Make new order.");
-        System.out.println("Press 2 for: Change existing order.");
-        System.out.println("Press 3 for: Delete order.");
-        System.out.println("Press 4 for: Move order from \"currentOrder\" to \"Stats\" list.");
-        System.out.println("Press 5 for: Show menu");
-        System.out.println("Press 6 for: Show current orders");
-        System.out.println("Press 7 for: Show today's current stats.");
-        System.out.println("Press 8 for: End day.");
+        System.out.println("What do you want to do?" +
+                "\nPress 1 for: Make new order." +
+                "\nPress 2 for: Change existing order." +
+                "\nPress 3 for: Delete order." +
+                "\nPress 4 for: Move order from \"currentOrder\" to \"Stats\" list." +
+                "\nPress 5 for: Show menu" +
+                "\nPress 6 for: Show current orders" +
+                "\nPress 7 for: Show today's current stats." +
+                "\nPress 8 for: End day.");
     }
 
+    // =========> MADE BY JOHANNES <=========
     public static boolean getChoice(){
         callOptions();
         int choice = validateUserIntInput(1, 8);
@@ -171,12 +172,17 @@ public class Main {
         }
     }
 
-    public static void removeOrder(String orderToDelete){
-        for (int i = 0; i <currentOrders.size(); i++) {
-            if (currentOrders.get(i).getCustomerPhoneNumber().equals(orderToDelete)) {
-                currentOrders.remove(i);
-            }
-        }
+    // =========> MADE BY ELLA <=========
+    public static void removeOrder(){
+            System.out.println("========================================");
+            System.out.println("|      D E L E T E   O R D E R         |");
+            System.out.println("========================================");
+            viewCurrentOrders();
+            System.out.println("========================================");
+            System.out.println("What order has been cancelled?");
+            int getOrder = validateUserIntInput(0, currentOrders.size());
+            currentOrders.remove(getOrder - 1);
+            System.out.println("Order " + getOrder + " has now been deleted.");
     }
 
     public static void changeOrder(String orderToChange){
@@ -186,6 +192,7 @@ public class Main {
         }
     }
 
+    // =========> MADE BY JOHANNES <=========
     static void doChoice(int choice){
         switch (choice){
             case 1:
@@ -196,9 +203,12 @@ public class Main {
                 System.out.println("You are in: 2");
                 break;
             case 3:
-                //Delete order
-                System.out.println("You are in: 3");
-                //removeOrder(phoneNumberToDelete);
+                if (currentOrders.size() > 0) {
+                    removeOrder();
+                }
+                else{
+                    System.out.println("You don't have any orders in your system.");
+                }
                 break;
             case 4:
                 completeOrder();
@@ -207,24 +217,20 @@ public class Main {
                 primaryMenu.seeMenu();
                 break;
             case 6:
-                //Show currentOrder
                 viewCurrentOrders();
                 break;
             case 7:
-                //Show today's current stats
                 stats.countAndSortPizzasFromOrders();
                 stats.exitStatistics();
                 break;
             case 8:
-                //End day
-                //sæt stattistics metode her
                 String endDay = currentOrders.size() == 0 ? "After a long day of work, you can finally go home" : "You cannot end the day when orders still need to be made. Make the rest and then go home.";
                 System.out.println(endDay);
                 break;
         }
     }
 
-
+    // =========> MADE BY JOHANNES <=========
     public static void main(String[] args) {
 
         boolean choice = true;
