@@ -7,6 +7,8 @@ public class Main {
     static Scanner scan = new Scanner(System.in);
 
 
+    static int extraPriceTotal = 0;
+
     static ArrayList<Order> currentOrders = new ArrayList<>();
 
 
@@ -53,6 +55,8 @@ public class Main {
 		String scannerDone = scan.next();
 		newOrder = new Order(pizzasToOrder, customerName, customerPhoneNum, timeOfPickup);
 		currentOrders.add(newOrder);
+        newOrder.addTotalPizzaPrice(extraPriceTotal);
+        extraPriceTotal = 0;
 		System.out.println(newOrder.toString());
 		System.out.println();
 
@@ -81,7 +85,9 @@ public class Main {
 
 	// =========> MADE BY CHRISTIAN <=========
 	static void chooseExstra(Pizza pizza){
-		System.out.println("========================================");
+
+
+        System.out.println("========================================");
 		System.out.println("Add extra ingredients?");
 		System.out.println("1. Yes\n2. No\n");
 		int choice = validateUserIntInput(1, 2);
@@ -92,11 +98,13 @@ public class Main {
 				int extraIndexNum = validateUserIntInput(1, Pizza.extras.length);
 				String extraIngredient = Pizza.extras[extraIndexNum - 1];
 				pizza.addToChoosenExtras(extraIngredient);
-				pizza.addToPizzaPrice(primaryMenu.getExtraPrice());
+
+				extraPriceTotal += primaryMenu.getExtraPrice();
 			}
 			String scannerDone = scan.next();
 			scan.reset();
 		}
+
 	}
 	// =========> MADE BY CHRISTIAN <=========
 	static void viewCurrentOrders(){

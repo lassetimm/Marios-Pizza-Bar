@@ -21,6 +21,11 @@ public class Order {
         }
     }
 
+
+    public void addTotalPizzaPrice(int totalPizzaPrice) {
+        this.totalPizzaPrice += totalPizzaPrice;
+    }
+
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
     }

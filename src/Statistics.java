@@ -20,6 +20,7 @@ public class Statistics {
     private int leBlissolaCounter = 0;
     private int silviaCounter = 0;
 
+
     public Statistics(Menu menu) {
         this.menu = menu;
         this.pizzaNames = new String[menu.getListOfPizza().length];
@@ -114,6 +115,7 @@ public class Statistics {
         //Og hvor meget det ville være efter 25% moms.
     public int calculateTotalPizzaPrice() {
         int totalTurnover = 0;
+
         String turnoverMsg = "Your turnover today is: ";
         String turnoverMsgWithTax = "Your earnings after taxes: ";
         for (int i = 0; i < listOfOrders.size(); i++) {
