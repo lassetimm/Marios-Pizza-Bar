@@ -62,6 +62,7 @@ public class Menu {
             }
             System.out.printf(pizza.getPizzaPrice() + ",-");
         }
+        System.out.println("\n\n\n");
     }
 
     //metode som returnere menuName
