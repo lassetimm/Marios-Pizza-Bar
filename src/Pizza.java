@@ -69,7 +69,7 @@ public class Pizza {
     static void viewExtras(){
 
         for (int i = 1; i <= extras.length; i++) {
-            System.out.println(i + ". " + extras[i - 1]);
+            System.out.print(i + ". " + extras[i - 1] + " || ");
         }
     }
 
@@ -79,6 +79,14 @@ public class Pizza {
 
     public void addToChoosenExtras(String extra) {
         this.choosenExtras.add(extra);
+    }
+
+    public void printPizza(){
+        System.out.println();
+        System.out.println("1. Pizza :      " + pizzaName);
+        System.out.println("2. Exstras :    " + choosenExtras);
+        System.out.println();
+
     }
 
     @Override

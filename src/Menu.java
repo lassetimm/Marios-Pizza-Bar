@@ -62,7 +62,24 @@ public class Menu {
             }
             System.out.printf(pizza.getPizzaPrice() + ",-");
         }
+
+    }
+
+    public void seeExtras(){
+        //Printer alle extra items under menuen
+
+        System.out.println("\n\nExtra topping cost 10 kr.\nYou can choose form these items:");
+        for (int i = 0; i < extras.length; i++) {
+            if (i == extras.length - 1){
+                System.out.printf("" + extras[i]);
+            }
+            else {
+                System.out.printf(extras[i] + ", ");
+            }
+
+        }
         System.out.println("\n\n\n");
+
     }
 
     //metode som returnere menuName
