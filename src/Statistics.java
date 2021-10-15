@@ -122,6 +122,7 @@ public class Statistics {
 
 
     public void payEmployees(int turnoverWithTax) {
+        //8 er timer og 120 er time løn. Så 960 kr på en dag.
         int employeeWorkingSalary = 8 * 120;
         if (turnoverWithTax >= employeeWorkingSalary) {
             String payEmployeesText = "You earned enough to pay your employees today\nDo you want to pay Alfonso? 'y' 'n'";
