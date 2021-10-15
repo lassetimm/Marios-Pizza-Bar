@@ -1,3 +1,4 @@
+// =========> MADE BY JOHANNES <=========
 public class Menu {
     private Pizza[] listOfPizza;
     private String menuName;
@@ -11,7 +12,7 @@ public class Menu {
         this.extraPrice = extraPrice;
     }
 
-    //Metode som returnere et array af alle pizzaer på menuen.
+
     public Pizza[] getListOfPizza() {
         return listOfPizza;
     }
@@ -20,8 +21,11 @@ public class Menu {
         return listOfPizza[indexNumber];
     }
 
-    //Metode til at printe hele menuen så den står ligesom i beskrivelsen på Marios Pizzabar.
+
     public void seeMenu(){
+        System.out.println("========================================");
+        System.out.println("|        MARIO'S PIZZARIA MENU         |");
+        System.out.println("========================================");
         //For hver pizza printes der en linje.
         for (int i = 0; i < listOfPizza.length; i++){
             System.out.println();

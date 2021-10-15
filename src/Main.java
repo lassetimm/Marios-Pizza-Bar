@@ -3,21 +3,20 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
-
-	static Scanner scan = new Scanner(System.in);
-
-	static ArrayList<Pizza> PizzasToOrder = new ArrayList<>();
-	static ArrayList<Order> currentOrders = new ArrayList<>();
+    // =========> MADE BY ALL <=========
+    static Scanner scan = new Scanner(System.in);
 
 
-	//All pizzas
-	static Pizza margarita = new Pizza ("Margarita", 57, 1,new String[]{"Tomatoes", "Cheese", "Oregano"});
-	static Pizza vesuvio = new Pizza ("Vesuvio", 57, 2, new String[]{"Tomatoes", "Cheese", "Ham", "Oregano"});
-	static Pizza hawaii = new Pizza ("Hawaii", 60, 3, new String[]{"Tomatoes", "Cheese", "Ham", "Pineapple", "Oregano"});
-	static Pizza pepperoni = new Pizza ("Pepperoni", 61, 4, new String[]{"Tomatoes", "Cheese", "Pepperoni", "Oregano"});
-	static Pizza carbona = new Pizza ("Carbona", 65, 5, new String[]{"Tomatoes", "Cheese", "Bolognese", "Spaghetti", "Sausage", "Oregano"});
-	static Pizza leBlissola = new Pizza ("Le Blissola", 62, 6, new String[]{"Tomatoes", "Cheese", "Ham", "Prawns", "Oregano"});
-	static Pizza silvia = new Pizza ("Silvia", 65, 7, new String[]{"Tomatoes", "Cheese", "Pepperoni", "Bell Pepper", "Onions", "Olives", "Oregano"});
+    static ArrayList<Order> currentOrders = new ArrayList<>();
+
+
+    static Pizza margarita = new Pizza ("Margarita", 57, 1,new String[]{"Tomatoes", "Cheese", "Oregano"});
+    static Pizza vesuvio = new Pizza ("Vesuvio", 57, 2, new String[]{"Tomatoes", "Cheese", "Ham", "Oregano"});
+    static Pizza hawaii = new Pizza ("Hawaii", 60, 3, new String[]{"Tomatoes", "Cheese", "Ham", "Pineapple", "Oregano"});
+    static Pizza pepperoni = new Pizza ("Pepperoni", 61, 4, new String[]{"Tomatoes", "Cheese", "Pepperoni", "Oregano"});
+    static Pizza carbona = new Pizza ("Carbona", 65, 5, new String[]{"Tomatoes", "Cheese", "Bolognese", "Spaghetti", "Sausage", "Oregano"});
+    static Pizza leBlissola = new Pizza ("Le Blissola", 62, 6, new String[]{"Tomatoes", "Cheese", "Ham", "Prawns", "Oregano"});
+    static Pizza silvia = new Pizza ("Silvia", 65, 7, new String[]{"Tomatoes", "Cheese", "Pepperoni", "Bell Pepper", "Onions", "Olives", "Oregano"});
 
 	//Menu
 	static Menu primaryMenu = new Menu(new Pizza[]{margarita, vesuvio, hawaii, pepperoni, carbona, leBlissola, silvia}, "MainMenu", Pizza.extras,10);
@@ -170,160 +169,158 @@ public class Main {
 		return returnNum;
 	}
 
-	private static void callOptions(){
-		System.out.println("What do you want to do?");
-		System.out.println("Press 1 for: Make new order.");
-		System.out.println("Press 2 for: Change existing order.");
-		System.out.println("Press 3 for: Delete order.");
-		System.out.println("Press 4 for: Move order from \"currentOrder\" to \"Stats\" list.");
-		System.out.println("Press 5 for: Show menu");
-		System.out.println("Press 6 for: Show current orders");
-		System.out.println("Press 7 for: Show today's current stats.");
-		System.out.println("Press 8 for: End day.");
-	}
+    // =========> MADE BY JOHANNES <=========
+    private static void callOptions(){
+        System.out.println("What do you want to do?" +
+                "\nPress 1 for: Make new order." +
+                "\nPress 2 for: Change existing order." +
+                "\nPress 3 for: Delete order." +
+                "\nPress 4 for: Move order from \"currentOrder\" to \"Stats\" list." +
+                "\nPress 5 for: Show menu" +
+                "\nPress 6 for: Show current orders" +
+                "\nPress 7 for: Show today's current stats." +
+                "\nPress 8 for: End day.");
+    }
 
-	public static boolean getChoice(){
-		callOptions();
-		int choice = validateUserIntInput(1, 8);
-		doChoice(choice);
-		if (choice == 8 && currentOrders.size() == 0){
-			stats.countAndSortPizzasFromOrders();
-			stats.payEmployees(stats.calculateTotalPizzaPrice2());
-			return false;
-		}
-		else{
-			return true;
-		}
-	}
+    // =========> MADE BY JOHANNES <=========
+    public static boolean getChoice(){
+        callOptions();
+        int choice = validateUserIntInput(1, 8);
+        doChoice(choice);
+        if (choice == 8 && currentOrders.size() == 0){
+            stats.countAndSortPizzasFromOrders();
+            stats.payEmployees(stats.calculateTotalPizzaPrice2());
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
 
-	// Ella made this
-	public static void removeOrder(){
-		for (int i = 0; i <currentOrders.size(); i++) {
-			if (currentOrders.get(i).getCustomerPhoneNumber().equals("")) {
-				currentOrders.remove(i);
-			}
-		}
-	}
-	// Ella made this
-	public static void changeOrder(){
-		System.out.println("========================================");
-		System.out.println("|       C H A N G E   O R D E R        |");
-		System.out.println("========================================");
-		System.out.println();
-		printCurrentOrders();
-		System.out.println("Choose an order to change");
-		int orderChoice = validateUserIntInput(1, currentOrders.size());
-		Order chosenOrder = currentOrders.get(orderChoice - 1);
-		chosenOrder.printOrder();
-		System.out.println("What do you want to change");
-		int choice = validateUserIntInput(1, 4);
-		switch (choice){
+    // =========> MADE BY ELLA <=========
+    public static void removeOrder(){
+            System.out.println("========================================");
+            System.out.println("|      D E L E T E   O R D E R         |");
+            System.out.println("========================================");
+            viewCurrentOrders();
+            System.out.println("========================================");
+            System.out.println("What order has been cancelled?");
+            int getOrder = validateUserIntInput(0, currentOrders.size());
+            currentOrders.remove(getOrder - 1);
+            System.out.println("Order " + getOrder + " has now been deleted.");
+    }
 
-			case 1:// Pizzas
+    public static void changeOrder(){
+        System.out.println("========================================");
+        System.out.println("|       C H A N G E   O R D E R        |");
+        System.out.println("========================================");
+        System.out.println();
+        printCurrentOrders();
+        System.out.println("Choose an order to change");
+        int orderChoice = validateUserIntInput(1, currentOrders.size());
+        Order chosenOrder = currentOrders.get(orderChoice - 1);
+        chosenOrder.printOrder();
+        System.out.println("What do you want to change");
+        int choice = validateUserIntInput(1, 4);
+        switch (choice){
 
-				System.out.println("1. Choose a pizza to change:");
-				System.out.println("2. Add new pizza to order?");
-				int actionChoice = validateUserIntInput(1, 2);
-				if (actionChoice == 2){
-					ArrayList<Pizza> pizzasToAdd = makeNewPizzas();
-					for (int i = 0; i < pizzasToAdd.size(); i++) {
+            case 1:// Pizzas
 
-						chosenOrder.addPizzaToOrder(pizzasToAdd.get(i));
-					}
-				}
-				else{
-					System.out.println(chosenOrder.returnStringListOfPizzas());
-					System.out.println("1. Choose pizza:");
-					int pizzaChoice = validateUserIntInput(1, chosenOrder.getListOfPizzas().size());
-					Pizza chosenPizza = chosenOrder.getListOfPizzas().get(pizzaChoice - 1);
-					System.out.println("1. Remove pizza?");
-					System.out.println("2. Change exstras?");
-					int actionChoice1 = validateUserIntInput(1, 2);
-					if (actionChoice1 == 1){
-						chosenOrder.getListOfPizzas().remove(chosenPizza);
-					}
-					else if (actionChoice1 == 2){
-						chosenPizza.getChoosenExtras().clear();
-						chooseExstra(chosenPizza);
-					}
-				}
-				break;
-			case 2:// customer name
-				System.out.println("Current name " + chosenOrder.getCustomerName());
-				System.out.println("Change to ->\n");
-				String newCustomerName = scan.next() + scan.nextLine();
-				chosenOrder.setCustomerName(newCustomerName);
-				break;
-			case 3:// customer phoneNo.
-				System.out.println("Current phoneNo. " + chosenOrder.getCustomerPhoneNumber());
-				System.out.println("Change to ->\n");
-				String newCustomerPhoneNo = scan.next() + scan.nextLine();
-				chosenOrder.setCustomerPhoneNumber(newCustomerPhoneNo);
-				break;
-			case 4:// time of pickup
-				System.out.println("Current time of pickup " + chosenOrder.getTimeOfPickUp());
-				System.out.println("Change to ->\n");
-				String newPickupTime = scan.next() + scan.nextLine();
-				chosenOrder.setTimeOfPickUp(newPickupTime);
-				break;
-		}
-		if (chosenOrder.getListOfPizzas().size() == 0){
-			currentOrders.remove(chosenOrder);
-		}
+                System.out.println("1. Choose a pizza to change:");
+                System.out.println("2. Add new pizza to order?");
+                int actionChoice = validateUserIntInput(1, 2);
+                if (actionChoice == 2){
+                    ArrayList<Pizza> pizzasToAdd = makeNewPizzas();
+                    for (int i = 0; i < pizzasToAdd.size(); i++) {
 
-	}
+                        chosenOrder.addPizzaToOrder(pizzasToAdd.get(i));
+                    }
+                }
+                else{
+                    System.out.println(chosenOrder.returnStringListOfPizzas());
+                    System.out.println("1. Choose pizza:");
+                    int pizzaChoice = validateUserIntInput(1, chosenOrder.getListOfPizzas().size());
+                    Pizza chosenPizza = chosenOrder.getListOfPizzas().get(pizzaChoice - 1);
+                    System.out.println("1. Remove pizza?");
+                    System.out.println("2. Change exstras?");
+                    int actionChoice1 = validateUserIntInput(1, 2);
+                    if (actionChoice1 == 1){
+                        chosenOrder.getListOfPizzas().remove(chosenPizza);
+                    }
+                    else if (actionChoice1 == 2){
+                        chosenPizza.getChoosenExtras().clear();
+                        chooseExstra(chosenPizza);
+                    }
+                }
+                break;
+            case 2:// customer name
+                System.out.println("Current name " + chosenOrder.getCustomerName());
+                System.out.println("Change to ->\n");
+                String newCustomerName = scan.next() + scan.nextLine();
+                chosenOrder.setCustomerName(newCustomerName);
+                break;
+            case 3:// customer phoneNo.
+                System.out.println("Current phoneNo. " + chosenOrder.getCustomerPhoneNumber());
+                System.out.println("Change to ->\n");
+                String newCustomerPhoneNo = scan.next() + scan.nextLine();
+                chosenOrder.setCustomerPhoneNumber(newCustomerPhoneNo);
+                break;
+            case 4:// time of pickup
+                System.out.println("Current time of pickup " + chosenOrder.getTimeOfPickUp());
+                System.out.println("Change to ->\n");
+                String newPickupTime = scan.next() + scan.nextLine();
+                chosenOrder.setTimeOfPickUp(newPickupTime);
+                break;
+        }
+        if (chosenOrder.getListOfPizzas().size() == 0){
+            currentOrders.remove(chosenOrder);
+        }
 
-	static void doChoice(int choice){
-		switch (choice){
-			case 1:
-				takeNewOrder();
-				break;
-			case 2:
-				//Change existing order
-				changeOrder();
-				break;
-			case 3:
-				//Delete order
-				removeOrder();
-				//removeOrder(phoneNumberToDelete);
-				break;
-			case 4:
-				if (currentOrders.size() > 0){
-					completeOrder();
-				}
-				else {
-					System.out.println("There are no orders to complete\n");
-				}
-				break;
-			case 5:
-				primaryMenu.seeMenu();
-				primaryMenu.seeExtras();
-				break;
-			case 6:
-				//Show currentOrder
-				viewCurrentOrders();
-				break;
-			case 7:
-				//Show today's current stats
-				stats.countAndSortPizzasFromOrders();
-				stats.exitStatistics();
-				break;
-			case 8:
-				//End day
-				//sæt stattistics metode her
-				String endDay = currentOrders.size() == 0 ? "After a long day of work, you can finally go home" : "You cannot end the day when orders still need to be made. Make the rest and then go home.";
-				System.out.println(endDay);
-				break;
-		}
-	}
+    }
+    // =========> MADE BY JOHANNES <=========
+    static void doChoice(int choice){
+        switch (choice){
+            case 1:
+                takeNewOrder();
+                break;
+            case 2:
+                changeOrder();
+                break;
+            case 3:
+                if (currentOrders.size() > 0) {
+                    removeOrder();
+                }
+                else{
+                    System.out.println("You don't have any orders in your system.");
+                }
+                break;
+            case 4:
+                completeOrder();
+                break;
+            case 5:
+                primaryMenu.seeMenu();
+                break;
+            case 6:
+                viewCurrentOrders();
+                break;
+            case 7:
+                stats.countAndSortPizzasFromOrders();
+                stats.exitStatistics();
+                break;
+            case 8:
+                String endDay = currentOrders.size() == 0 ? "After a long day of work, you can finally go home" : "You cannot end the day when orders still need to be made. Make the rest and then go home.";
+                System.out.println(endDay);
+                break;
+        }
+    }
 
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		boolean choice = true;
-		while (choice){
-			choice = getChoice();
-		}
+        boolean choice = true;
+        while (choice){
+            choice = getChoice();
+        }
 
-	}
+    }
 }
