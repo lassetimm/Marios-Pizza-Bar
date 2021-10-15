@@ -50,8 +50,6 @@ public class Main {
 			pizzasToOrder.add(pizzasToAdd.get(i));
 		}
 
-
-
 		String scannerDone = scan.next();
 		newOrder = new Order(pizzasToOrder, customerName, customerPhoneNum, timeOfPickup);
 		currentOrders.add(newOrder);
@@ -61,7 +59,7 @@ public class Main {
 		scan.reset();
 
 	}
-
+    // =========> MADE BY CHRISTIAN <=========
 	static ArrayList<Pizza> makeNewPizzas(){
 		ArrayList<Pizza> pizzasToOrder = new ArrayList<>();
 
