@@ -2,11 +2,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Statistics {
-    private Menu menu;
-    private String[] pizzaNames;
 
     static Scanner scan = new Scanner(System.in);
 
+    private Menu menu;
+    private String[] pizzaNames;
     private ArrayList<Order> listOfOrders = new ArrayList<>();
     private ArrayList<Integer> pizzas = new ArrayList<Integer>();
 
@@ -25,9 +25,6 @@ public class Statistics {
         for (int i = 0; i < pizzaNames.length; i++){
             pizzaNames[i] = menu.getListOfPizza()[i].getPizzaName();
         }
-
-
-
     }
 
     public void addToListOfOrders(Order Order) {
@@ -93,7 +90,7 @@ public class Statistics {
         String totalAmountOfPizzas = "\nTotal amount of pizzas sold:";
         int sum = 0;
         for (int i = 0; i < pizzas.length; i++) {
-                sum += pizzas[i];
+            sum += pizzas[i];
         }
         System.out.println(totalAmountOfPizzas + " '" + sum + "'");
     }
@@ -106,7 +103,7 @@ public class Statistics {
             totalTurnover += listOfOrders.get(i).getTotalPizzaPrice();
         }
         System.out.println(turnoverMsg + " " + totalTurnover + ",-");
-         int turnoverWithTax = (totalTurnover / 4) * 3;
+        int turnoverWithTax = (totalTurnover / 4) * 3;
         System.out.println(turnoverMsgWithTax + turnoverWithTax + ",-");
         return turnoverWithTax;
     }
