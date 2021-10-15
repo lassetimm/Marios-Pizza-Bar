@@ -35,9 +35,6 @@ public class Statistics {
         this.listOfOrders.add(Order);
     }
 
-    public ArrayList<Order> getListOfOrders() {
-        return listOfOrders;
-    }
 
 
     public void countAndSortPizzasFromOrders() {

@@ -18,156 +18,131 @@ public class Main {
     static Pizza leBlissola = new Pizza ("Le Blissola", 62, 6, new String[]{"Tomatoes", "Cheese", "Ham", "Prawns", "Oregano"});
     static Pizza silvia = new Pizza ("Silvia", 65, 7, new String[]{"Tomatoes", "Cheese", "Pepperoni", "Bell Pepper", "Onions", "Olives", "Oregano"});
 
-	//Menu
-	static Menu primaryMenu = new Menu(new Pizza[]{margarita, vesuvio, hawaii, pepperoni, carbona, leBlissola, silvia}, "MainMenu", Pizza.extras,10);
+    //Menu
+    static Menu primaryMenu = new Menu(new Pizza[]{margarita, vesuvio, hawaii, pepperoni, carbona, leBlissola, silvia}, "MainMenu", Pizza.extras,10);
 
-	//Statistic
-	static Statistics stats = new Statistics(primaryMenu);
+    //Statistic
+    static Statistics stats = new Statistics(primaryMenu);
 
-	//=============================================================METHODS=======================================================
+    //=============================================================METHODS=======================================================
 
-	// =========> MADE BY CHRISTIAN <=========
-	static void takeNewOrder(){
+    // =========> MADE BY CHRISTIAN <=========
+    static void takeNewOrder(){
 
-		ArrayList<Pizza> pizzasToOrder = new ArrayList<>();
-		Order newOrder;
+        ArrayList<Pizza> PizzasToOrder = new ArrayList<>();
+        Order newOrder;
 
-		System.out.println("========================================");
-		System.out.println("|     T A K E   N E W   O R D E R      |");
-		System.out.println("========================================");
-		System.out.println("Insert the following infomation");
-		System.out.println("    - Customer name:");
-		String customerName = scan.next() + scan.nextLine();
-		System.out.println("    - Customer Phone Number:");
-		String customerPhoneNum = scan.next() + scan.nextLine();
-		System.out.println("    - Time of pickup:");
-		String timeOfPickup = scan.next() + scan.nextLine();
+        System.out.println("========================================");
+        System.out.println("|     T A K E   N E W   O R D E R      |");
+        System.out.println("========================================");
+        System.out.println("Insert the following infomation");
+        System.out.println("    - Customer name:");
+        String customerName = scan.next() + scan.nextLine();
+        System.out.println("    - Customer Phone Number:");
+        String customerPhoneNum = scan.next() + scan.nextLine();
+        System.out.println("    - Time of pickup:");
+        String timeOfPickup = scan.next() + scan.nextLine();
+        System.out.println("    - What pizzas:\n" +
+                "Press q when your done");
+        primaryMenu.seeMenu();
 
+        while (scan.hasNextInt()){
 
-		ArrayList<Pizza> pizzasToAdd = makeNewPizzas();
-		for (int i = 0; i < pizzasToAdd.size(); i++) {
+            int pizzaNumber = validateUserIntInput(1, primaryMenu.getListOfPizza().length);
+            Pizza pizzaToOrder = primaryMenu.getPizzaFromListOfPizza(pizzaNumber - 1);
+            PizzasToOrder.add(pizzaToOrder);
+            chooseExstra(pizzaToOrder);
+            System.out.println(pizzaToOrder);
+        }
 
-			pizzasToOrder.add(pizzasToAdd.get(i));
-		}
+        String scannerDone = scan.next();
+        newOrder = new Order(PizzasToOrder, customerName, customerPhoneNum, timeOfPickup);
+        currentOrders.add(newOrder);
+        System.out.println(newOrder.toString());
 
+        scan.reset();
 
+    }
+    // =========> MADE BY CHRISTIAN <=========
+    static void chooseExstra(Pizza pizza){
+        System.out.println("========================================");
+        System.out.println("Add extra ingredients?");
+        System.out.println("1. Yes\n2. No\n");
+        int choice = validateUserIntInput(1, 2);
+        if (choice == 1){
+            Pizza.viewExtras();
+            System.out.println("Choose extra ingedient\nPress \'q\' to stop");
+            while (scan.hasNextInt()) {
+                int extraIndexNum = validateUserIntInput(1, Pizza.extras.length);
+                String extraIngredient = Pizza.extras[extraIndexNum - 1];
+                pizza.addToChoosenExtras(extraIngredient);
+                pizza.addToPizzaPrice(primaryMenu.getExtraPrice());
+            }
+            String scannerDone = scan.next();
+            scan.reset();
+        }
+    }
+    // =========> MADE BY CHRISTIAN <=========
+    static void viewCurrentOrders(){
+        String pluralOrder = " orders";
+        if (currentOrders.size() == 1){
+            pluralOrder = " order";
+        }
 
-		String scannerDone = scan.next();
-		newOrder = new Order(pizzasToOrder, customerName, customerPhoneNum, timeOfPickup);
-		currentOrders.add(newOrder);
-		System.out.println(newOrder.toString());
-		System.out.println();
+        System.out.println("========================================");
+        System.out.println("|     C U R R E N T   O R D E R S      |");
+        System.out.println("========================================");
+        System.out.println("There are " + currentOrders.size() +  pluralOrder);
+        for (int i = 1; i <= currentOrders.size(); i++) {
+            System.out.println(i + ". " + currentOrders.get(i - 1));
+        }
+    }
 
-		scan.reset();
+    // =========> MADE BY CHRISTIAN <=========
+    static void completeOrder(){
 
-	}
+        System.out.println("========================================");
+        System.out.println("|     C O M P L E T E   O R D E R      |");
+        System.out.println("========================================");
 
-	static ArrayList<Pizza> makeNewPizzas(){
-		ArrayList<Pizza> pizzasToOrder = new ArrayList<>();
+        viewCurrentOrders();
 
-		System.out.println("    - What pizza to add to order:\n" +
-				"Press q when your done");
-		primaryMenu.seeMenu();
-		System.out.println("\n\n\n");
+        System.out.println("========================================");
+        System.out.println("What order have been picked up");
+        int getOrder = validateUserIntInput(1, currentOrders.size());
 
-		while (scan.hasNextInt()){
+        currentOrders.get(getOrder - 1).setHasBeenPickedUp(true);
 
-			int pizzaNumber = validateUserIntInput(1, primaryMenu.getListOfPizza().length);
-			Pizza pizzaToAdd = primaryMenu.getPizzaFromListOfPizza(pizzaNumber - 1);
-			chooseExstra(pizzaToAdd);
-			pizzasToOrder.add(pizzaToAdd);
-			System.out.println(pizzaToAdd);
-		}
-		return pizzasToOrder;
-	}
+        for (int i = 0; i < currentOrders.size(); i++) {
 
-	// =========> MADE BY CHRISTIAN <=========
-	static void chooseExstra(Pizza pizza){
-		System.out.println("========================================");
-		System.out.println("Add extra ingredients?");
-		System.out.println("1. Yes\n2. No\n");
-		int choice = validateUserIntInput(1, 2);
-		if (choice == 1){
-			Pizza.viewExtras();
-			System.out.println("\nChoose extra ingedient\nPress \'q\' to stop");
-			while (scan.hasNextInt()) {
-				int extraIndexNum = validateUserIntInput(1, Pizza.extras.length);
-				String extraIngredient = Pizza.extras[extraIndexNum - 1];
-				pizza.addToChoosenExtras(extraIngredient);
-				pizza.addToPizzaPrice(primaryMenu.getExtraPrice());
-			}
-			String scannerDone = scan.next();
-			scan.reset();
-		}
-	}
-	// =========> MADE BY CHRISTIAN <=========
-	static void viewCurrentOrders(){
-		String pluralOrder = " orders";
-		if (currentOrders.size() == 1){
-			pluralOrder = " order";
-		}
+            if (currentOrders.get(i).getHasBeenPickedUp()){
+                stats.addToListOfOrders(currentOrders.get(i));
+                currentOrders.remove(i);
+                break;
+            }
+        }
+    }
 
-		System.out.println("========================================");
-		System.out.println("|     C U R R E N T   O R D E R S      |");
-		System.out.println("========================================");
-		System.out.println("There are " + currentOrders.size() +  pluralOrder + "\n");
-		for (int i = 1; i <= currentOrders.size(); i++) {
-			System.out.println(i + ". " + currentOrders.get(i - 1) + "\n");
-		}
-        System.out.println("========================================\n");
-	}
-
-	static void printCurrentOrders(){
-		for (int i = 1; i <= currentOrders.size(); i++) {
-			System.out.println(i + ". " + currentOrders.get(i - 1) + "\n");
-		}
-	}
-
-	// =========> MADE BY CHRISTIAN <=========
-	static void completeOrder(){
-
-		System.out.println("========================================");
-		System.out.println("|     C O M P L E T E   O R D E R      |");
-		System.out.println("========================================");
-
-		viewCurrentOrders();
-
-		System.out.println("========================================");
-		System.out.println("What order have been picked up");
-		int getOrder = validateUserIntInput(1, currentOrders.size());
-
-		currentOrders.get(getOrder - 1).setHasBeenPickedUp(true);
-
-		for (int i = 0; i < currentOrders.size(); i++) {
-
-			if (currentOrders.get(i).getHasBeenPickedUp()){
-				stats.addToListOfOrders(currentOrders.get(i));
-				currentOrders.remove(i);
-				break;
-			}
-		}
-	}
-
-	// =========> MADE BY CHRISTIAN <=========
-	static int validateUserIntInput(int minValue, int maxValue){
-		int returnNum = 0;
-		boolean run = true;
-		while (run) {
-			try {
-				returnNum = scan.nextInt();
-				if (returnNum >= minValue && returnNum <= maxValue){
-					run = false;
-				}
-				else {
-					System.out.println("The number has to be between " + (minValue) + " and " + (maxValue));
-				}
-			} catch (InputMismatchException e) {
-				System.out.println("Invalid input! try a number");
-				scan.next();
-			}
-		}
-		return returnNum;
-	}
+    // =========> MADE BY CHRISTIAN <=========
+    static int validateUserIntInput(int minValue, int maxValue){
+        int returnNum = 0;
+        boolean run = true;
+        while (run) {
+            try {
+                returnNum = scan.nextInt();
+                if (returnNum >= minValue && returnNum <= maxValue){
+                    run = false;
+                }
+                else {
+                    System.out.println("The number has to be between " + (minValue) + " and " + (maxValue));
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input! try a number");
+                scan.next();
+            }
+        }
+        return returnNum;
+    }
 
     // =========> MADE BY JOHANNES <=========
     private static void callOptions(){
@@ -175,7 +150,7 @@ public class Main {
                 "\nPress 1 for: Make new order." +
                 "\nPress 2 for: Change existing order." +
                 "\nPress 3 for: Delete order." +
-                "\nPress 4 for: Move order from \"currentOrder\" to \"Stats\" list." +
+                "\nPress 4 for: Pickup order." +
                 "\nPress 5 for: Show menu" +
                 "\nPress 6 for: Show current orders" +
                 "\nPress 7 for: Show today's current stats." +
@@ -210,73 +185,13 @@ public class Main {
             System.out.println("Order " + getOrder + " has now been deleted.");
     }
 
-    public static void changeOrder(){
-        System.out.println("========================================");
-        System.out.println("|       C H A N G E   O R D E R        |");
-        System.out.println("========================================");
-        System.out.println();
-        printCurrentOrders();
-        System.out.println("Choose an order to change");
-        int orderChoice = validateUserIntInput(1, currentOrders.size());
-        Order chosenOrder = currentOrders.get(orderChoice - 1);
-        chosenOrder.printOrder();
-        System.out.println("What do you want to change");
-        int choice = validateUserIntInput(1, 4);
-        switch (choice){
-
-            case 1:// Pizzas
-
-                System.out.println("1. Choose a pizza to change:");
-                System.out.println("2. Add new pizza to order?");
-                int actionChoice = validateUserIntInput(1, 2);
-                if (actionChoice == 2){
-                    ArrayList<Pizza> pizzasToAdd = makeNewPizzas();
-                    for (int i = 0; i < pizzasToAdd.size(); i++) {
-
-                        chosenOrder.addPizzaToOrder(pizzasToAdd.get(i));
-                    }
-                }
-                else{
-                    System.out.println(chosenOrder.returnStringListOfPizzas());
-                    System.out.println("1. Choose pizza:");
-                    int pizzaChoice = validateUserIntInput(1, chosenOrder.getListOfPizzas().size());
-                    Pizza chosenPizza = chosenOrder.getListOfPizzas().get(pizzaChoice - 1);
-                    System.out.println("1. Remove pizza?");
-                    System.out.println("2. Change exstras?");
-                    int actionChoice1 = validateUserIntInput(1, 2);
-                    if (actionChoice1 == 1){
-                        chosenOrder.getListOfPizzas().remove(chosenPizza);
-                    }
-                    else if (actionChoice1 == 2){
-                        chosenPizza.getChoosenExtras().clear();
-                        chooseExstra(chosenPizza);
-                    }
-                }
-                break;
-            case 2:// customer name
-                System.out.println("Current name " + chosenOrder.getCustomerName());
-                System.out.println("Change to ->\n");
-                String newCustomerName = scan.next() + scan.nextLine();
-                chosenOrder.setCustomerName(newCustomerName);
-                break;
-            case 3:// customer phoneNo.
-                System.out.println("Current phoneNo. " + chosenOrder.getCustomerPhoneNumber());
-                System.out.println("Change to ->\n");
-                String newCustomerPhoneNo = scan.next() + scan.nextLine();
-                chosenOrder.setCustomerPhoneNumber(newCustomerPhoneNo);
-                break;
-            case 4:// time of pickup
-                System.out.println("Current time of pickup " + chosenOrder.getTimeOfPickUp());
-                System.out.println("Change to ->\n");
-                String newPickupTime = scan.next() + scan.nextLine();
-                chosenOrder.setTimeOfPickUp(newPickupTime);
-                break;
+    public static void changeOrder(String orderToChange){
+        for (int i = 0; i <currentOrders.size(); i++) {
+            if (currentOrders.get(i).getCustomerPhoneNumber().equals(orderToChange)) {
+            }
         }
-        if (chosenOrder.getListOfPizzas().size() == 0){
-            currentOrders.remove(chosenOrder);
-        }
-
     }
+
     // =========> MADE BY JOHANNES <=========
     static void doChoice(int choice){
         switch (choice){
@@ -284,7 +199,8 @@ public class Main {
                 takeNewOrder();
                 break;
             case 2:
-                changeOrder();
+                //Change existing order
+                System.out.println("You are in: 2");
                 break;
             case 3:
                 if (currentOrders.size() > 0) {
